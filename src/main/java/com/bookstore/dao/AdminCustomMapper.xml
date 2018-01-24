@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bookstore.dao.AdminCustomMapper">
+
+    <sql id="Base_Column_List">
+    id, name, password, create_time as createTime, update_time as updateTime, is_delete as isDelete, last_login_time as lastLoginTime, jurisdiction
+  </sql>
+    <select id="listAdminsByQuery" resultType="com.bookstore.pojo.po.Admin">
+        select
+        <include refid="Base_Column_List"/>
+        from admin
+        <where>
+            <if test="query != null">
+                name like CONCAT('%',#{query},'%')
+            </if>
+            <if test="jurisdiction != null">
+                and jurisdiction = #{jurisdiction}
+            </if>
+        </where>
+    </select>
+</mapper>

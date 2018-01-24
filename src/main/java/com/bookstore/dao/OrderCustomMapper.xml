@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bookstore.dao.OrderCustomMapper">
+
+    <sql id="Base_Column_List" >
+        o.id, user_id as userId, update_time AS  updateTime, pay_time as payTime, create_time as createTime, end_time as endTime, status, recevier_name as
+        recevierName,content,
+        address, recevier_tel as recevierTel
+    </sql>
+    <sql id="Blod">
+        user.username
+    </sql>
+
+    <select id="listOrdersByQuery" resultType="com.bookstore.pojo.vo.OrdersVO">
+        select
+        <include refid="Base_Column_List"/>,
+        <include refid="Blod"/>
+        from orders o LEFT JOIN USER  user ON  o .user_id=user.id
+        <where>
+            <if test="query != '' ">
+                user.username like CONCAT('%',#{query},'%')
+            </if>
+            <if test="query != ''">
+               or o.id like CONCAT('%',#{query},'%')
+            </if>
+            <if test="status != null">
+                and status = #{status}
+            </if>
+        </where>
+    </select>
+
+    <select id="getOrderById" resultType="com.bookstore.pojo.vo.OrdersVO">
+        SELECT
+        <include refid="Base_Column_List"/>
+        from orders o
+        where id=#{id}
+    </select>
+    <select id="getOrderByUid" resultType="com.bookstore.pojo.vo.OrdersVO">
+    SELECT
+    <include refid="Base_Column_List"/>
+    from orders o
+    where user_id=#{uid}
+</select>
+
+</mapper>

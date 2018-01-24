@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+            http://www.springframework.org/schema/beans/spring-beans.xsd
+            http://www.springframework.org/schema/context
+            http://www.springframework.org/schema/context/spring-context.xsd
+            http://www.springframework.org/schema/mvc
+            http://www.springframework.org/schema/mvc/spring-mvc.xsd
+            ">
+    <!--扫描com.bookstore.controller包下（或者其子包下）的所有注解类-->
+    <!--什么叫被扫描到？ 凡是被扫描到的Action，就会放到IoC容器中，换句话说，当控制反转容器启动的时候，就会把Action实例化-->
+    <context:component-scan base-package="com.bookstore.controller"/>
+    <!--@RequestMapping @ResponseBody-->
+    <!--第一步：在pom.xml中添加jackson2的依赖-->
+    <!--第二步：在spring-mvc.xml添加<mvc:annotation-driven/>-->
+    <!--第三步：在springmvc的方法上写@ResponseBody-->
+    <mvc:annotation-driven/>
+    <!--配置拦截器  多个顺序执行-->
+    <!--<mvc:interceptors>-->
+        <!--登录拦截器-->
+        <!--<mvc:interceptor>-->
+            <!--<mvc:mapping path="/**/"/>-->
+            <!--<bean class="com.lepu.ychat.interceptor.LoginInterceptor"></bean>-->
+        <!--</mvc:interceptor>-->
+        <!--权限拦截器-->
+        <!--<mvc:interceptor>-->
+            <!--<mvc:mapping path="/**/"/>-->
+            <!--<bean class="com.lepu.ychat.interceptor.AuthorityInterceptor"></bean>-->
+        <!--</mvc:interceptor>-->
+    <!--</mvc:interceptors>-->
+    <!--视图解析器-->
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/WEB-INF/jsp/"/>
+        <property name="suffix" value=".jsp"/>
+    </bean>
+    <!--&lt;!&ndash;文件上传解析器&ndash;&gt;-->
+    <bean id="multipartResolver"
+          class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <property name="defaultEncoding">
+            <value>UTF-8</value>
+        </property>
+        <property name="maxUploadSize">
+            <!-- 10M -->
+            <value>10485760</value>
+        </property>
+        <property name="maxInMemorySize">
+            <value>4096</value>
+        </property>
+    </bean>
+    <!--静态资源解析-->
+    <!--一旦在这里配置了，访问http://localhost:8080/**/请求时，就不会经过action-->
+    <mvc:resources mapping="/js/**" location="/js/"/>
+    <mvc:resources mapping="/css/**" location="/css/"/>
+    <mvc:resources mapping="/images/**" location="/images/"/>
+    <mvc:resources mapping="/bootstrap/**" location="/bootstrap/"/>
+    <mvc:resources mapping="/fonts/**" location="/fonts/"/>
+    <mvc:resources mapping="/landing/**" location="/landing/"/>
+    <mvc:resources mapping="/assets/**" location="/assets/"/>
+    <mvc:resources mapping="/common/**" location="/common/"></mvc:resources>
+    <mvc:resources mapping="/My97DatePicker/**" location="/My97DatePicker/"></mvc:resources>
+</beans>
