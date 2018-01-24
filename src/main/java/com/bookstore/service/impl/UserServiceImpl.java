@@ -88,7 +88,14 @@ public class UserServiceImpl implements UserService {
     //删除用户
     @Override
     public void deleteUser(Long id) {
-userCustomMapper.deleteUser(id);
+        userCustomMapper.deleteUser(id);
+    }
+
+    //初始化用户密码
+    @Override
+    public void modify(Long id) {
+       String password= MD5Util.MD5("000000");
+        userCustomMapper.modify(id,password);
     }
 
     @Override

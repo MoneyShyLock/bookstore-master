@@ -95,6 +95,10 @@
     update user set is_valid =1
      where id = #{id,jdbcType=BIGINT}
   </update>
+  <update id="modify">
+    update user set password =#{password}
+     where id = #{id,jdbcType=BIGINT}
+  </update>
 
 
 </mapper>

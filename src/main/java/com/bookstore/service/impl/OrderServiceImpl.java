@@ -59,8 +59,9 @@ public class OrderServiceImpl implements OrderService{
 
         for(OrdersVO ordersVO:ordersVOs) {
            List<ContentVo> contentVo= JSONArray.parseArray(ordersVO.getContent(), ContentVo.class);
+            ordersVO.setBooks(contentVo);
         }
-        System.out.println("转换成公");
+
         return ordersVOs;
     }
 }

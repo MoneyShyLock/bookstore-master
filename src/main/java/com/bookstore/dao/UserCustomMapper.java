@@ -13,4 +13,5 @@ public interface UserCustomMapper {
     List<User> selectAllVip();
     int getUserCount();
     void deleteUser(Long id);
+    void modify(@Param("id") Long id,@Param("password") String password);
 }

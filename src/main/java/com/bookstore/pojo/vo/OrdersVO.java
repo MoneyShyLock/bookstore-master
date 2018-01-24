@@ -8,7 +8,15 @@ import java.util.List;
 public class OrdersVO extends Orders{
     private String username;
     private BigDecimal amounts;
+    private List<ContentVo> books;
 
+    public List<ContentVo> getBooks() {
+        return books;
+    }
+
+    public void setBooks(List<ContentVo> books) {
+        this.books = books;
+    }
 
     public OrdersVO() {
     }

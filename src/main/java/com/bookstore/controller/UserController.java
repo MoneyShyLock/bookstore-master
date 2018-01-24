@@ -40,11 +40,12 @@ public class UserController {
         return "user_list";
     }
     //删除用户，修改is_valid字段
-    @RequestMapping(value = "/delUser")
-    public MessageResult delUser(Long id) {
+    @ResponseBody
+    @RequestMapping("/delUser")
+    public MessageResult delUser(Long uid) {
         MessageResult mr=new MessageResult();
         try {
-            userService.deleteUser(id);
+            userService.deleteUser(uid);
             mr.setMessage("success");
         }catch (Exception e){
             mr.setMessage("fail");
@@ -52,11 +53,12 @@ public class UserController {
         return mr;
     }
     //初始化用户密码
-    @RequestMapping(value = "/modify")
+    @ResponseBody
+    @RequestMapping("/modify")
     public MessageResult modify(Long id) {
         MessageResult mr=new MessageResult();
         try {
-            userService.deleteUser(id);
+            userService.modify(id);
             mr.setMessage("success");
         }catch (Exception e){
             mr.setMessage("fail");

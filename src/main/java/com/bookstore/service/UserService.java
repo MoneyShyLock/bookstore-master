@@ -50,4 +50,6 @@ public interface UserService {
     int getUserCount();
 //删除用户
     void deleteUser(Long id);
+
+    void modify(Long id);
 }

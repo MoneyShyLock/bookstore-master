@@ -1,3 +1,4 @@
+<%--
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <div class="sidebar" id="sidebar">
     <script type="text/javascript">
@@ -102,27 +103,6 @@
             </ul>
         </li>
 
-        <%--<li>
-            <a href="#" class="dropdown-toggle">
-                <i class="icon-tag"></i>
-                <span class="menu-text"> 前台管理 </span>
-                <b class="arrow icon-angle-down"></b>
-            </a>
-
-            <ul class="submenu">
-                <li>
-                    <a href="#">
-                        <i class="icon-double-angle-right"></i> 轮播图管理
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <i class="icon-double-angle-right"></i>公告管理
-                    </a>
-                </li>
-            </ul>
-        </li>--%>
-
         <li>
             <a href="#" class="dropdown-toggle">
                 <i class="icon-tag"></i>
@@ -164,4 +144,4 @@
     <script type="text/javascript">
         try { ace.settings.check('sidebar', 'collapsed') } catch(e) {}
     </script>
-</div>
+</div>--%>
