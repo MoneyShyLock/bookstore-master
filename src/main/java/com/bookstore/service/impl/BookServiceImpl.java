@@ -14,6 +14,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -30,16 +31,16 @@ public class BookServiceImpl implements BookService {
         MessageResult messageResult = new MessageResult();
         try {
             int count = bookMapper.insertSelective(book);
-            if(count >0){
+            if (count > 0) {
                 messageResult.setSuccess(true);
                 messageResult.setMessage("插入成功");
                 messageResult.setData(s);
-            }else {
+            } else {
                 messageResult.setMessage("操作失败");
                 messageResult.setSuccess(false);
             }
-        }catch (Exception e){
-            logger.error(e.getMessage(),e);
+        } catch (Exception e) {
+            logger.error(e.getMessage(), e);
         }
 
         return messageResult;
@@ -51,8 +52,15 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public MessageResult addBookInventory(List<Long> ids, int inventory) {
-        return null;
+    public int updateInventory(Book book) {
+        book.setUpdated(new Date());
+        int count = bookMapper.updateByPrimaryKeySelective(book);
+        return count;
+    }
+
+    @Override
+    public int addBookInventory(Book book) {
+        return 0;
     }
 
     @Override
@@ -110,9 +118,9 @@ public class BookServiceImpl implements BookService {
     public List<BookVO> listBook_new() {
         List<BookVO> list = null;
         try {
-            list =  bookCustomMapper.listBook_new();
-        }catch (Exception e){
-            logger.error(e.getMessage(),e);
+            list = bookCustomMapper.listBook_new();
+        } catch (Exception e) {
+            logger.error(e.getMessage(), e);
         }
         return list;
     }
@@ -122,9 +130,9 @@ public class BookServiceImpl implements BookService {
     public List<BookVO> listBook_recommended() {
         List<BookVO> list = null;
         try {
-            list =  bookCustomMapper.listBook_recommended();
-        }catch (Exception e){
-            logger.error(e.getMessage(),e);
+            list = bookCustomMapper.listBook_recommended();
+        } catch (Exception e) {
+            logger.error(e.getMessage(), e);
         }
         return list;
     }
@@ -133,9 +141,9 @@ public class BookServiceImpl implements BookService {
     public List<BookVO> listBook_specialSupply() {
         List<BookVO> list = null;
         try {
-            list =  bookCustomMapper.listBook_specialSupply();
-        }catch (Exception e){
-            logger.error(e.getMessage(),e);
+            list = bookCustomMapper.listBook_specialSupply();
+        } catch (Exception e) {
+            logger.error(e.getMessage(), e);
         }
         return list;
     }
@@ -150,9 +158,9 @@ public class BookServiceImpl implements BookService {
     public BookVO getBookForBack(Long id) {
         BookVO bookVO = null;
         try {
-           bookVO =  bookCustomMapper.getBookForBack(id);
-        }catch (Exception e){
-            logger.error(e.getMessage(),e);
+            bookVO = bookCustomMapper.getBookForBack(id);
+        } catch (Exception e) {
+            logger.error(e.getMessage(), e);
         }
         return bookVO;
     }
@@ -165,7 +173,14 @@ public class BookServiceImpl implements BookService {
 //        BookExample.Criteria criteria = example.createCriteria();
 //        criteria.andBooknameLike(query);
         try {
-            list = bookMapper.selectByExample(null);
+            if (query == null || query.isEmpty()) {
+                list = bookMapper.selectByExample(null);
+            } else {
+                BookExample example = new BookExample();
+                BookExample.Criteria criteria = example.createCriteria();
+                criteria.andBooknameLike(query);
+                list = bookMapper.selectByExample(example);
+            }
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
         }
@@ -174,6 +189,6 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public CountBook countBook() {
-        return  bookCustomMapper.countBooks();
+        return bookCustomMapper.countBooks();
     }
 }

@@ -141,7 +141,7 @@
                 </li>
 
                 <li>
-                    <a class="dropdown-toggle">
+                    <a href="#" class="dropdown-toggle">
                         <i class="icon-list"></i>
                         <span class="menu-text"> 资金管理 </span>
                         <b class="arrow icon-angle-down"></b>

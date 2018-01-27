@@ -96,7 +96,7 @@
                 </li>
 
                 <li>
-                    <a class="dropdown-toggle">
+                    <a href="#" class="dropdown-toggle">
                         <i class="icon-list"></i>
                         <span class="menu-text"> 用户管理 </span>
                         <b class="arrow icon-angle-down"></b>
@@ -169,7 +169,7 @@
 
                 <li>
                     <a href="#" class="dropdown-toggle">
-                        <i class="icon-tag"></i>
+                        <i class="icon-picture"></i>
                         <span class="menu-text"> 报表管理 </span>
                         <b class="arrow icon-angle-down"></b>
                     </a>
@@ -230,17 +230,12 @@
 
             <div class="page-content">
                 <div class="page-header">
-                    <h3>
-                        管理员管理
-                        <small>
-                            <i class="icon-double-angle-right"></i>
-                        </small>
-                        列表
-                        <small>
-                            <i class="icon-double-angle-right"></i>
-                        </small>
-                        <a href="toSignup">+新增</a>
-                    </h3>
+                        <h1>
+                            管理员管理
+                            <small>
+                                <i class="icon-double-angle-right"></i><a class="label label-xlg label-primary arrowed arrowed-right" href="toSignup">新增</a>
+                            </small>
+                        </h1>
                 </div>
                 <!-- /.page-header -->
 
@@ -261,7 +256,7 @@
                                             <option value="3">订单管理员</option>
                                             <option value="4">报表管理员</option>
                                         </select>
-                                        <button onclick="search()" class="btn help-btn">查询</button>
+                                        <button onclick="search()" class="btn btn-app btn-primary btn-xs">查询</button>
                                         <a id="hidden_jurisdiction" style="display: none">${jurisdiction}</a>
                                     </div>
 
@@ -463,10 +458,6 @@
 <jsp:include page="/common/commonjs.jsp"></jsp:include>
 
 </body>
-
-</html>
-<%--弹出层显示信息--%>
-
 <%--//搜索--%>
 <script>
     function search() {
@@ -570,5 +561,9 @@
         }
     }
 </script>
+</html>
+<%--弹出层显示信息--%>
+
+
 
 

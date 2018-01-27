@@ -3,7 +3,7 @@
 <mapper namespace="com.bookstore.dao.BookCustomMapper">
 
     <sql id="Base_Column_List">
-    b.id, b.bookname, b.price, b.category_id, b.author, b.publish_time, b.sell_point as sellPoint,b.image, b.created, b.updated,
+    b.id, b.bookname, b.price, b.category_id,b.isbn, b.author, b.publish_time, b.sell_point as sellPoint,b.image, b.created, b.updated,
     b.inventory, b.sales_volume,b.kinds,b.discount,bc.name as categoryName
   </sql>
 

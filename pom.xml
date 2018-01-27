@@ -233,15 +233,15 @@
                     <target>1.7</target>
                 </configuration>
             </plugin>
-            <!-- 配置Tomcat插件 -->
-           <!-- <plugin>
+
+           <plugin>
                 <groupId>org.apache.tomcat.maven</groupId>
                 <artifactId>tomcat7-maven-plugin</artifactId>
                 <configuration>
                     <port>8080</port>
                     <path>/bookstore</path>
                 </configuration>
-            </plugin>-->
+            </plugin>
         </plugins>
         <resources>
             <resource>

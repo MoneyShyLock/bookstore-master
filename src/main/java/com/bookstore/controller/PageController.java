@@ -67,6 +67,16 @@ public class PageController {
     public String toRegister(){
         return "register";
     }
+    //测试
+    @RequestMapping("/putInBook")
+    public String toputInBook(){
+        return "putInBook";
+    }
+    @RequestMapping("/userEacher")
+    public String userEacher(){
+        return "userEchar";
+    }
+
 
 
 }

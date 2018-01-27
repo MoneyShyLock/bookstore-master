@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface AdminService {
 
-    public Admin getAdminById();
+    public Admin getAdminById(Long id);
 
     List<Admin> listAdmins(String query,Integer jurisdiction);
 

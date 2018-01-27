@@ -13,8 +13,10 @@ public interface BookService {
     MessageResult saveBook(Book book);
     //修改书籍
     MessageResult updateBook(List<Long> ids);
+    //更新库存以及相关信息
+    int updateInventory(Book book);
     //增加库存  入库
-    MessageResult addBookInventory(List<Long> ids,int inventory);
+    int addBookInventory(Book book);
     //出库
     MessageResult subBookInventory(List<Long> ids,int inventory);
 

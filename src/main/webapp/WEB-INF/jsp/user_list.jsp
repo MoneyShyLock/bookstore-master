@@ -95,7 +95,7 @@
                 </li>
 
                 <li class="active open">
-                    <a class="dropdown-toggle">
+                    <a href="#" class="dropdown-toggle">
                         <i class="icon-list"></i>
                         <span class="menu-text"> 用户管理 </span>
                         <b class="arrow icon-angle-down"></b>
@@ -290,12 +290,11 @@
                                                                 data-toggle="modal"
                                                                 data-target="#userShop"
                                                                 onclick="check(${user.id})">
-                                                            <span class="glyphicon glyphicon-pencil"
-                                                                  aria-hidden="true"></span>
+                                                           <i class="icon-edit"></i>
                                                             查看
                                                         </button>
                                                         <button class="btn btn-danger btn-sm" onclick="del(${user.id})">
-                                                            <span class="glyphicon glyphicon-trash"
+                                                            <span class="icon-trash"
                                                                   aria-hidden="true"></span>
                                                             删除
                                                         </button>

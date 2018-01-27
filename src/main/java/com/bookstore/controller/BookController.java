@@ -31,6 +31,7 @@ import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
@@ -90,26 +91,43 @@ public class BookController {
     }
 
     //入库
-    @RequestMapping("/addInventory/{ids}/{inventory}")
+    @RequestMapping("/addInventory/{ids}/{inventory}/{isbn}")
     @ResponseBody
-    public MessageResult addBookInventory(@PathVariable List<Long> ids,@PathVariable int inventory){
+    public MessageResult addBookInventory(@PathVariable Long ids,@PathVariable int inventory,@PathVariable String isbn){
 
-        MessageResult mr = null;
+        MessageResult mr = new MessageResult();
         try {
-            mr = bookService.addBookInventory(ids,inventory);
+            BookVO bookVO = bookService.getBookForBack(ids);
+            //设值
+            Book book=new Book();
+            book.setId(ids);
+            book.setInventory(bookVO.getInventory()+inventory);
+            book.setIsbn(isbn);
+            int count=bookService.updateInventory(book);
+            if(count==1)
+                mr.setMessage("success");
+            else mr.setMessage("error");
         }catch (Exception e){
             logger.error(e.getMessage(),e);
         }
         return mr;
     }
     //出库
-    @RequestMapping("/subInventory/{ids}/{inventory}")
+    @RequestMapping("/subInventory/{ids}/{inventory}/{price}")
     @ResponseBody
-    public MessageResult subBookInventory(@PathVariable List<Long> ids,@PathVariable int inventory){
-
-        MessageResult mr = null;
+    public MessageResult subBookInventory(@PathVariable Long ids,@PathVariable int inventory,@PathVariable BigDecimal price){
+        MessageResult mr = new MessageResult();
         try {
-            mr = bookService.subBookInventory(ids,inventory);
+            BookVO bookVO = bookService.getBookForBack(ids);
+            //设值
+            Book book=new Book();
+            book.setId(ids);
+            book.setInventory(bookVO.getInventory()-inventory);
+            book.setPrice(price);
+            int count=bookService.updateInventory(book);
+            if(count==1)
+                mr.setMessage("success");
+            else mr.setMessage("error");
         }catch (Exception e){
             logger.error(e.getMessage(),e);
         }
@@ -156,7 +174,9 @@ public class BookController {
                 }
             }
         }
+        System.out.println(book);
         book.setCreated(new Date());
+        book.setSalesVolume(0);
         book.setImage(JsonUtils.objectToJson(imagesPath));
         //book.setImage(JsonUtils.objectToJson(imagesPath));
         MessageResult messageResult = bookService.saveBook(book);

@@ -92,7 +92,7 @@
                 </li>
 
                 <li class="active open">
-                    <a class="dropdown-toggle">
+                    <a href="#" class="dropdown-toggle">
                         <i class="icon-list"></i>
                         <span class="menu-text"> 用户管理 </span>
                         <b class="arrow icon-angle-down"></b>

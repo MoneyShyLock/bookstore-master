@@ -157,6 +157,14 @@ public class AdminController {
         session.invalidate();
         return "redirect:toLogin";
     }
+    //管理员个人信息
+    @RequestMapping("/admin_information")
+    public String adminInformation(HttpSession session,Model model) {
+        Admin sessionAdmin=(Admin) session.getAttribute("Session_Admin");
+        Admin admin=adminService.getAdminById(11L);
+        model.addAttribute("adminInformation",admin);
+        return "admin_information";
+    }
 
     //禁用一个管理员
     @RequestMapping("/banAdmin/{ids}")

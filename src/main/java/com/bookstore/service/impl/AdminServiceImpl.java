@@ -26,8 +26,8 @@ public class AdminServiceImpl implements AdminService{
     @Autowired
     private AdminCustomMapper adminCustomMapper;
     @Override
-    public Admin getAdminById() {
-        return null;
+    public Admin getAdminById(Long id) {
+        return adminMapper.selectByPrimaryKey(id);
     }
 
     @Override
