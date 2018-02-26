@@ -34,7 +34,7 @@
     <div class="sign-in-wrapper">
         <div class="sign-in-inner">
             <div class="login-brand text-center">
-                <i class="fa fa-database m-right-xs"></i> 书城 <strong class="text-skin">登录界面</strong>
+                书城 <strong class="text-skin">登录界面</strong>
             </div>
 
             <form>

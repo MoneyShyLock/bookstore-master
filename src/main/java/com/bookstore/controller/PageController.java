@@ -1,7 +1,11 @@
 package com.bookstore.controller;
 
+import com.bookstore.pojo.po.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import javax.servlet.http.HttpSession;
+
 //页面跳转控制器
 @Controller
 public class PageController {
@@ -39,10 +43,7 @@ public class PageController {
         return "user_order_timeline";
     }
 
-    @RequestMapping("/protal")
-    public String toProtal(){
-        return "protal";
-    }
+
 
     @RequestMapping("/protal_detail")
     public String toDetail(){
@@ -52,6 +53,7 @@ public class PageController {
     public String toCart(){
         return "cart";
     }
+
 
     @RequestMapping("/addBook")
     public String toAddBook(){

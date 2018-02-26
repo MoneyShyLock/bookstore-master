@@ -143,4 +143,24 @@ public class User {
     public void setConsumptionAmount(BigDecimal consumptionAmount) {
         this.consumptionAmount = consumptionAmount;
     }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", tel='" + tel + '\'' +
+                ", email='" + email + '\'' +
+                ", registerTime=" + registerTime +
+                ", account=" + account +
+                ", addrId=" + addrId +
+                ", isValid=" + isValid +
+                ", isvip=" + isvip +
+                ", integration='" + integration + '\'' +
+                ", payPassword='" + payPassword + '\'' +
+                ", identityCard='" + identityCard + '\'' +
+                ", consumptionAmount=" + consumptionAmount +
+                '}';
+    }
 }

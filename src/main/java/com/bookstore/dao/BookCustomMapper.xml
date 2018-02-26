@@ -51,4 +51,10 @@
         from book b LEFT JOIN book_category bc on b.category_id = bc.id
         where b.status =1 and b.kinds=3  order by b.created DESC limit 0,3
     </select>
+    <select id="listBook_specialOffer" resultType="com.bookstore.pojo.vo.BookVO">
+        SELECT
+        <include refid="Base_Column_List" />
+        from book b LEFT JOIN book_category bc on b.category_id = bc.id
+        where b.status =1 and b.kinds=4  order by b.created DESC limit 0,3
+    </select>
 </mapper>

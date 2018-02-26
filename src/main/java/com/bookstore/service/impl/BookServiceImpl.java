@@ -149,6 +149,17 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
+    public List<BookVO> listBook_specialOffer() {
+        List<BookVO> list = null;
+        try {
+            list = bookCustomMapper.listBook_specialOffer();
+        } catch (Exception e) {
+            logger.error(e.getMessage(), e);
+        }
+        return list;
+    }
+
+    @Override
     public BookVO getBookForProtal(Long id) {
         return bookCustomMapper.getBookForProtal(id);
 

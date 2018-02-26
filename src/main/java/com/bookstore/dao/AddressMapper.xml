@@ -4,6 +4,7 @@
   <resultMap id="BaseResultMap" type="com.bookstore.pojo.po.Address" >
     <id column="id" property="id" jdbcType="BIGINT" />
     <result column="addrname" property="addrname" jdbcType="VARCHAR" />
+    <result column="uid" property="uid" jdbcType="BIGINT" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -64,7 +65,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, addrname
+    id, addrname,uid
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.bookstore.pojo.po.AddressExample" >
     select
@@ -97,8 +98,8 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.bookstore.pojo.po.Address" >
-    insert into address (id, addrname)
-    values (#{id,jdbcType=BIGINT}, #{addrname,jdbcType=VARCHAR})
+    insert into address (id, addrname,uid)
+    values (#{id,jdbcType=BIGINT}, #{addrname,jdbcType=VARCHAR},#{uid,jdbcType=BIGINT})
   </insert>
   <insert id="insertSelective" parameterType="com.bookstore.pojo.po.Address" >
     insert into address
@@ -109,6 +110,9 @@
       <if test="addrname != null" >
         addrname,
       </if>
+      <if test="uid != null" >
+        uid,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -116,6 +120,9 @@
       </if>
       <if test="addrname != null" >
         #{addrname,jdbcType=VARCHAR},
+      </if>
+      <if test="uid != null" >
+        #{uid,jdbcType=BIGINT},
       </if>
     </trim>
   </insert>
@@ -161,4 +168,11 @@
     set addrname = #{addrname,jdbcType=VARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
+
+
+  <select id="findByUid" parameterType="java.lang.Long" resultType="com.bookstore.pojo.po.Address">
+    select
+    <include refid="Base_Column_List"/>
+    from address where uid=#{id}
+  </select>
 </mapper>

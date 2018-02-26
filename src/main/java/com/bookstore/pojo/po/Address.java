@@ -4,6 +4,15 @@ public class Address {
     private Long id;
 
     private String addrname;
+    private Long uid;
+
+    public Long getUid() {
+        return uid;
+    }
+
+    public void setUid(Long uid) {
+        this.uid = uid;
+    }
 
     public Long getId() {
         return id;
@@ -19,5 +28,14 @@ public class Address {
 
     public void setAddrname(String addrname) {
         this.addrname = addrname == null ? null : addrname.trim();
+    }
+
+    @Override
+    public String toString() {
+        return "Address{" +
+                "id=" + id +
+                ", addrname='" + addrname + '\'' +
+                ", uid=" + uid +
+                '}';
     }
 }

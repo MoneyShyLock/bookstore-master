@@ -309,8 +309,9 @@
                                 <div class="col-sm-9">
                                     <select id="kinds" name="kinds">
                                         <option value="1" selected="selected">新书推荐</option>
-                                        <option value="2">独家特供</option>
-                                        <option value="3">主编推荐</option>
+                                        <option value="2">主编推荐</option>
+                                        <option value="3">独家特供</option>
+                                        <option value="4">特价图书</option>
                                     </select>
                                 </div>
                             </div>

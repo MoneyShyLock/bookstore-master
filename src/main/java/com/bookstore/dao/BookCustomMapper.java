@@ -18,4 +18,6 @@ public interface BookCustomMapper {
     List<BookVO> listBook_specialSupply();
 
     BookVO getBookForProtal(Long id);
+
+    List<BookVO> listBook_specialOffer();
 }

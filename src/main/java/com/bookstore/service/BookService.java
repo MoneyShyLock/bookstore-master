@@ -3,6 +3,7 @@ package com.bookstore.service;
 import com.bookstore.common.util.MessageResult;
 import com.bookstore.pojo.po.Book;
 import com.bookstore.pojo.vo.BookVO;
+import com.bookstore.pojo.vo.CartVO;
 import com.bookstore.pojo.vo.CountBook;
 
 import java.util.List;
@@ -31,6 +32,8 @@ public interface BookService {
     List<BookVO> listBook_recommended();
     //独家特供
     List<BookVO> listBook_specialSupply();
+    //特价图书
+    List<BookVO> listBook_specialOffer();
 
     //销量排行-----日  周  月 年
 
@@ -43,4 +46,6 @@ public interface BookService {
     List<Book> listBooks(String query);
 
     CountBook countBook();
+
+
 }

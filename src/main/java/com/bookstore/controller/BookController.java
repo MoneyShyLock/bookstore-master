@@ -141,12 +141,12 @@ public class BookController {
         return bookVO;
     }
 
-    @ResponseBody
+
     @RequestMapping("/upload/UploadController")
     public MessageResult  springUpload(Book book, HttpServletRequest request) throws IllegalStateException, IOException
     {
 
-        List<String> imagesPath =new ArrayList<>();
+        String imagePath ="";
         //将当前上下文初始化给  CommonsMutipartResolver （多部分解析器）
         CommonsMultipartResolver multipartResolver=new CommonsMultipartResolver(
                 request.getSession().getServletContext());
@@ -167,17 +167,17 @@ public class BookController {
                     System.out.println(file.getOriginalFilename());
                     int i = file.getOriginalFilename().lastIndexOf(".");
                     String suffixName = file.getOriginalFilename().substring(i,file.getOriginalFilename().length());
-                    String path="D://springUpload/"+ IDUtil.generateDocumentName()+"."+suffixName;
-                    imagesPath.add(path);
+                    String basePath="F:/IdeaWorkSpace/bookstore-master/src/main/webapp/";
+                    imagePath="images/"+ IDUtil.generateDocumentName()+suffixName;
                     //上传
-                    file.transferTo(new File(path));
+                    file.transferTo(new File(basePath+imagePath));
                 }
             }
         }
         System.out.println(book);
         book.setCreated(new Date());
         book.setSalesVolume(0);
-        book.setImage(JsonUtils.objectToJson(imagesPath));
+        book.setImage(imagePath);
         //book.setImage(JsonUtils.objectToJson(imagesPath));
         MessageResult messageResult = bookService.saveBook(book);
         return messageResult;
@@ -204,33 +204,8 @@ public class BookController {
         model.addAttribute("result",countBook);
         return "echarts_book";
     }
-    // 首页新书推荐 3本
-    @RequestMapping("/listNewBooks")
-    @ResponseBody
-    public List<BookVO> listNewBooks(){
-        List<BookVO> list = bookService.listBook_new();
-        return list;
-    }
 
-    //主编推荐
-    @RequestMapping("/listRecommondedBooks")
-    @ResponseBody
-    public List<BookVO> listBook_recommended(){
-        List<BookVO> list = bookService.listBook_recommended();
-        return list;
-    }
-    //独家特供
-    @RequestMapping("/listSpecialBooks")
-    @ResponseBody
-    public Object listBook_specialSupply(){
-        List<BookVO> list = bookService.listBook_specialSupply();
-        if (list.size()!=0 || list!=null){
-            return list;
-        }else {
-            return "暂无数据";
-        }
 
-    }
 
 
     @RequestMapping("/getBookById")
