@@ -28,5 +28,5 @@ public interface AddressMapper {
 
     int updateByPrimaryKey(Address record);
 
-    List<Address> findByUid(Long id);
+    List<Address> findByUid(Address address);
 }

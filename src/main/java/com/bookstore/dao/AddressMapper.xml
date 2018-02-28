@@ -170,9 +170,10 @@
   </update>
 
 
-  <select id="findByUid" parameterType="java.lang.Long" resultType="com.bookstore.pojo.po.Address">
+  <select id="findByUid" parameterType="com.bookstore.pojo.po.Address" resultType="com.bookstore.pojo.po.Address">
     select
     <include refid="Base_Column_List"/>
-    from address where uid=#{id}
+    from address where uid=#{uid} and id != #{id}
+
   </select>
 </mapper>

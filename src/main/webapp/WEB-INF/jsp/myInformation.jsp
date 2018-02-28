@@ -81,8 +81,9 @@
                                 <div class="prod_title">默认地址</div>
                                 <hr/>
                                 <p class="details">收货地址:${address.addrname}</p>
+                                <p class="details">联系方式:${user.tel}</p>
                                 <p class="details">收件人:　${user.username}</p>
-                                <a href="#"  class="more">- more details -</a>
+
                                 <div class="clear"></div>
                             </div>
 
@@ -91,16 +92,16 @@
                         <div class="clear"></div>
                     </div>
                 <%--其他地址--%>
-                <c:forEach items="${addressList}" var="address">
+                <c:forEach items="${addressList}" var="addrss">
                     <div class="feat_prod_box">
                         <div class="prod_det_box">
                             <div class="box_top"></div>
                             <div class="box_center">
-                                <div class="prod_title">设为默认</div>
+                                <div class="prod_title" onclick="changeAddress(${addrss.id})"><a href="#">设为默认</a></div>
                                 <hr/>
-                                <p class="details">收货地址:${address.addrname}</p>
+                                <p class="details">收货地址:${addrss.addrname}</p>
+                                <p class="details">联系方式:${user.tel}</p>
                                 <p class="details">收件人:　${user.username}</p>
-                                <a href="#"  class="more">- more details -</a>
                                 <div class="clear"></div>
                             </div>
 
@@ -147,8 +148,8 @@
 </div>
 </body>
 <script>
-    function bookDetail(id) {
-        window.location.href="getBookById?id="+id;
+    function changeAddress(id) {
+        window.location.href="changeAddress?id="+id;
     }
 </script>
 </html>

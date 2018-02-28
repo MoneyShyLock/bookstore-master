@@ -55,8 +55,10 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public MessageResult updateUser(User user) {
-        return null;
+    public int updateUser(User user) {
+        int count=userMapper.updateByPrimaryKeySelective(user);
+
+        return count;
     }
 
     @Override

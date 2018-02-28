@@ -12,7 +12,7 @@ import java.util.List;
 public interface AddressService {
 
 
-    List<Address> findByUid(User user);
+    List<Address> findByUid(User user,Long id);
 
     Address findById(Long addrId);
 }

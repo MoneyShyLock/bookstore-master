@@ -3,7 +3,7 @@ package com.bookstore.service;
 import com.bookstore.common.util.MessageResult;
 import com.bookstore.pojo.po.Book;
 import com.bookstore.pojo.vo.BookVO;
-import com.bookstore.pojo.vo.CartVO;
+//import com.bookstore.pojo.vo.CartVO;
 import com.bookstore.pojo.vo.CountBook;
 
 import java.util.List;

@@ -43,11 +43,26 @@ public class CartController {
     @RequestMapping("/myCart")
     public String toMyCart(HttpSession session, Model model){
         User user=(User)session.getAttribute("session_User");
+        Cart cart=new Cart();
         if(user!=null){
             //查询登录用户的购物车
-            Cart cart= cartService.findByUid(user.getId()).get(0);
+            List<Cart> list=cartService.findByUid(user.getId());
+            if(list.size()==0) {
+                    cart = new Cart();
+                    cart.setUserId(user.getId());
+                    cartService.addCart(cart);
+                    cart = cartService.findByUid(user.getId()).get(0);
+                    model.addAttribute("cartVOS",null);
+                    return "myCart";
+            }
+
+            cart=list.get(0);
             //通过购物车得到id，查询购物车的商品
             List<CartItem> cartItems=cartItemService.findByCartId(cart.getId());
+            if(cartItems.size()==0){
+                model.addAttribute("cartVOS",null);
+                return "myCart";
+            }
             //添加书名，价格，图片路径属性
             List<CartVO> cartVOS =new ArrayList<>();
             for (CartItem cartItem:cartItems){

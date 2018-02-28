@@ -23,7 +23,7 @@ public interface UserService {
     MessageResult unbanUser(List<Long> ids);
 
     //个人更改自己的资料
-    MessageResult updateUser(User user);
+    int updateUser(User user);
     //成为会员
     MessageResult applyForVIP(List<Long> ids);
 

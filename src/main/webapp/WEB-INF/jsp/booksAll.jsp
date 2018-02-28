@@ -67,6 +67,15 @@
             </c:forEach>
                 <div class="pagination">
 
+                    <a href="booksAll">首页</a>
+                    <c:if test="${protalPageInfo.hasPreviousPage}">
+                    <a href="booksAll?pn=${protalPageInfo.pageNum-1}">上一页</a>
+                    </c:if>
+                    <c:if test="${protalPageInfo.hasNextPage}">
+                    <a href="booksAll?pn=${protalPageInfo.pageNum+1}">下一页</a>
+                    </c:if>
+                    <a href="booksAll?pn=${protalPageInfo.pages}">末页</a>
+
                 </div>
             </div>
             <%--<div class="col-md-6">

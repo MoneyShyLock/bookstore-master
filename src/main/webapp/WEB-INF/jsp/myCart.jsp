@@ -52,7 +52,7 @@
                     <tr class="cart_title">
                         <td>
                             <%--全选--%>
-                            <input type="checkbox" id="shop_c" class="shopChoice" id="all">
+                            <input type="checkbox" id="shop_c" class="shopChoice">
                             <label for="shop_c" class="shop"></label>
                         </td>
                         <td>Item pic</td>
@@ -80,7 +80,12 @@
                 </table>
                 </c:if>
                 <c:if test="${cartVOS==null}">
-                    <span>您的购物车还没有商品</span>
+                <table class="cart_table">
+                    <tr>
+                        <td>您的购物车还没有商品</td>
+                    </tr>
+                </table>
+
                 </c:if>
                 <a href="#" class="continue">&lt; 继续购物</a>
                 <a href="#" class="checkout" onclick="account()">结算 &gt;</a>
@@ -127,8 +132,7 @@
         window.location.href="getBookById?id="+id;
     }
     $(function() {
-
-        $("#all").click(function () {//判断全选框的改变
+        $("#shop_c").click(function () {//判断全选框的改变
             var flage = $(this).is(":checked");//全选选中为true，否则为false
             $("input[type=checkbox]").each(function () {
                 $(this).prop("checked", flage);

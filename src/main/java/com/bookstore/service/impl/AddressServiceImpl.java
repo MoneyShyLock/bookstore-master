@@ -25,9 +25,11 @@ public class AddressServiceImpl implements AddressService {
     private AddressMapper addressMapper;
 
     @Override
-    public List<Address> findByUid(User user) {
-
-        return addressMapper.findByUid(user.getId());
+    public List<Address> findByUid(User user,Long id) {
+        Address address =new Address();
+        address.setId(id);
+        address.setUid(user.getId());
+        return addressMapper.findByUid(address);
     }
 
     @Override

@@ -1,5 +1,6 @@
 package com.bookstore.controller;
 
+import com.bookstore.common.util.MessageResult;
 import com.bookstore.pojo.po.Address;
 import com.bookstore.pojo.po.Book;
 import com.bookstore.pojo.po.User;
@@ -86,9 +87,9 @@ public class ProtalController {
             Address address = addressService.findById(user.getAddrId());
             session.setAttribute("address",address);
             //通过userID获得改用户的所有地址
-            List<Address> addressList=addressService.findByUid(user);
+            List<Address> addressList=addressService.findByUid(user,address.getId());
             System.out.println(addressList);
-            modelAndView.addObject("addressList",addressList);
+            session.setAttribute("addressList",addressList);
             modelAndView.setViewName("myInformation");
 
         }else {
@@ -97,12 +98,32 @@ public class ProtalController {
 
         return modelAndView;
     }
-    @RequestMapping("modifyInformation")
+    //修改个人信息
+    @RequestMapping("/modifyInformation")
     public ModelAndView modifyInformation(ModelAndView modelAndView, HttpSession session,User user) {
+        userService.updateUser(user);
+        User sessionUser=(User)session.getAttribute("session_User");
+        sessionUser.setEmail(user.getEmail());
+        sessionUser.setTel(user.getTel());
+        sessionUser.setUsername(user.getUsername());
+        modelAndView.setViewName("myInformation");
         return modelAndView;
     }
+    //修改默认地址
+    @RequestMapping("/changeAddress")
+    public ModelAndView changeAddress(ModelAndView modelAndView, HttpSession session,@RequestParam("id") Long id) {
+        User user = new User();
+        User sessionUser=(User)session.getAttribute("session_User");
+        user.setAddrId(id);
+        user.setId(sessionUser.getId());
+        int count=userService.updateUser(user);
+        sessionUser.setAddrId(id);
+        session.setAttribute("session_User",sessionUser);
+        return new ModelAndView("redirect:/myInformation");
+
+    }
     //创建订单
-    @RequestMapping("creatOrder")
+    @RequestMapping("/creatOrder")
     public String creatOrder(ModelAndView modelAndView, HttpSession session,
                                    @RequestParam("bookId") Long bookId,
                                    @RequestParam("price") BigDecimal price,
@@ -110,7 +131,7 @@ public class ProtalController {
         return "success";
     }
     //页面跳转
-    @RequestMapping("orderProtal")
+    @RequestMapping("/orderProtal")
     public String orderProtal() {
         return "orderProtal";
     }

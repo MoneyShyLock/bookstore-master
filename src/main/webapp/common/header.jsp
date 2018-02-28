@@ -81,7 +81,7 @@
 
                     <ul class="user-menu pull-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
                         <li>
-                            <a href="/bookstore/admin_information">
+                            <a href="/admin_information">
                                 <i class="icon-user"></i>
                                 个人资料
                             </a>
@@ -90,7 +90,7 @@
                         <li class="divider"></li>
 
                         <li>
-                            <a href="/bookstore/logout">
+                            <a href="/logout">
                                 <i class="icon-off"></i>
                                 退出
                             </a>
