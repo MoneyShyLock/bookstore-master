@@ -35,7 +35,7 @@
     <div class="sign-in-wrapper">
         <div class="sign-in-inner">
             <div class="login-brand text-center">
-                <i class="fa fa-database m-right-xs"></i> BookStore <strong class="text-skin">新增管理员</strong>
+                 BookStore <strong class="text-skin">新增普通管理员</strong>
             </div>
 
             <form id="register_form">
@@ -47,20 +47,12 @@
                     <input id="_password" type="password" class="form-control" placeholder="请输入密码">
                     <span id="pwd_message"></span>
                 </div>
-                <select id="jurisdiction">
-                    <option value="1" selected="selected">用户管理员</option>
-                    <option value="2">书籍管理员</option>
-                    <option value="3">订单管理员</option>
-                    <option value="4">报表管理员</option>
-                </select>
+
                 <div class="m-top-md p-top-sm">
                     <a id="create_btn" class="btn btn-success block">确认创建</a>
                 </div>
 
-                <div class="m-top-md p-top-sm">
-                    <div class="font-12 text-center m-bottom-xs">已经拥有账户?</div>
-                    <a href="toLogin" class="btn btn-default block">去登录</a>
-                </div>
+
             </form>
         </div><!-- ./sign-in-inner -->
     </div><!-- ./sign-in-wrapper -->
@@ -144,20 +136,13 @@
     $('#create_btn').click(function () {
         var $registerAdmin = $('#registerAdmin').val();
         var $pwd = $('#_password').val();
-        var obj=document.getElementById("jurisdiction");
-        for(i=0;i<obj.length;i++) {//下拉框的长度就是它的选项数.
 
-            if(obj[i].selected==true) {
-                var text=obj[i].value;//获取当前选择项的值.
-            }
-        }
         $.ajax({
             type: "post",
             url: "admin",
             data: {
                 name: $registerAdmin,
                 password: $pwd,
-                jurisdiction:text
             },
             dataType: "json",
             success: function(result) {                    //result为返回值

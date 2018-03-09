@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bookstore.dao.WarehouseMapper" >
+  <resultMap id="BaseResultMap" type="com.bookstore.pojo.po.Warehouse" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="time" property="time" jdbcType="TIMESTAMP" />
+    <result column="deliveryCount" property="deliveryCount" jdbcType="BIGINT" />
+    <result column="entryCount" property="entryCount" jdbcType="BIGINT" />
+    <result column="inventory" property="inventory" jdbcType="BIGINT" />
+    <result column="bookId" property="bookId" jdbcType="BIGINT" />
+    <result column="bookNumber" property="bookNumber" jdbcType="BIGINT" />
+    <result column="year" property="year" jdbcType="BIGINT" />
+    <result column="month" property="month" jdbcType="BIGINT" />
+    <result column="week" property="week" jdbcType="BIGINT" />
+  </resultMap>
+
+  <sql id="Base_Column_List" >
+    id, time,deliveryCount,entryCount,inventory,bookId,bookNumber,year,month,week
+  </sql>
+
+  <insert id="insert" parameterType="com.bookstore.pojo.po.Warehouse" >
+    insert into warehouse
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="time != null" >
+        time,
+      </if>
+      <if test="deliveryCount != null" >
+        deliveryCount,
+      </if>
+
+      <if test="entryCount != null" >
+        entryCount,
+      </if>
+      <if test="inventory != null" >
+        inventory,
+      </if>
+      <if test="bookId != null" >
+        bookId,
+      </if>
+      <if test="bookNumber != null" >
+        bookNumber,
+      </if>
+      <if test="year != null" >
+        year,
+      </if>
+      <if test="month != null" >
+        month,
+      </if>
+      <if test="week != null" >
+        week,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="time != null" >
+        #{time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deliveryCount != null" >
+        #{deliveryCount,jdbcType=BIGINT},
+      </if>
+
+      <if test="entryCount != null" >
+        #{entryCount,jdbcType=BIGINT},
+      </if>
+      <if test="inventory != null" >
+        #{inventory,jdbcType=BIGINT},
+      </if>
+      <if test="bookId != null" >
+        #{bookId,jdbcType=BIGINT},
+      </if>
+      <if test="bookId != null" >
+        #{bookNumber,jdbcType=BIGINT},
+      </if>
+      <if test="year != null" >
+        #{year,jdbcType=BIGINT},
+      </if>
+      <if test="month != null" >
+        #{month,jdbcType=BIGINT},
+      </if>
+      <if test="week != null" >
+        #{week,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="listOutBook" parameterType="com.bookstore.pojo.po.Warehouse" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from warehouse
+    <where>
+      deliveryCount!=""
+      <if test="year!=0">
+       and year=#{year}
+      </if>
+      <if test="month!=0">
+      and  month=#{month}
+      </if>
+      <if test="week!=0">
+        and  week=#{week}
+      </if>
+    </where>
+  </select>
+
+  <select id="findAll" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from warehouse where deliveryCount!=""
+  </select>
+  <select id="listPutBook" parameterType="com.bookstore.pojo.po.Warehouse" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from warehouse
+    <where>
+      entryCount!=""
+      <if test="year!=0">
+        and year=#{year}
+      </if>
+      <if test="month!=0">
+        and  month=#{month}
+      </if>
+      <if test="week!=0">
+        and  week=#{week}
+      </if>
+    </where>
+  </select>
+
+  <select id="findAllPut" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from warehouse where entryCount!=""
+  </select>
+
+</mapper>

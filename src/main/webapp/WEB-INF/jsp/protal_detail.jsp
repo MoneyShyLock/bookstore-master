@@ -74,7 +74,9 @@
                 <li  class="selected"><a href="category.html">全部图书</a></li>
                 <li><a href="specials">降价图书</a></li>
                 <li><a href="myInformation">我的信息</a></li>
-                <li><a href="register">注册</a></li>
+                <c:if test="${session_User==null}">
+                 <li><a href="register">注册</a></li>
+                </c:if>
                 <li><a href="myCart">购物车</a></li>
                 <c:if test="${session_User!=null}">
                     <li><a href="myaccount.html">欢迎你 ${session_User.username}</a></li>
@@ -123,70 +125,20 @@
             <div id="demo" class="demolayout">
 
                 <ul id="demo-nav" class="demolayout">
-                    <li><a class="active" href="#tab1">More details</a></li>
-                    <li><a class="" href="#tab2">Related books</a></li>
+                    <li><a class="" href="#tab2">相关图书</a></li>
                 </ul>
 
                 <div class="tabs-container">
 
-                    <div style="display: block;" class="tab" id="tab1">
-                        <p class="more_details">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.
-                        </p>
-                        <ul class="list">
-                            <li><a href="#">Lorem ipsum dolor sit amet, consectetur adipisicing elit</a></li>
-                            <li><a href="#">Lorem ipsum dolor sit amet, consectetur adipisicing elit</a></li>
-                            <li><a href="#">Lorem ipsum dolor sit amet, consectetur adipisicing elit</a></li>
-                            <li><a href="#">Lorem ipsum dolor sit amet, consectetur adipisicing elit</a></li>
-                        </ul>
-                        <p class="more_details">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.
-                        </p>
-                    </div>
-
                     <div style="display: none;" class="tab" id="tab2">
+                        <c:forEach items="${bookKinds}" var="book">
                         <div class="new_prod_box">
-                            <a href="details.html">product name</a>
+                            <a href="details.html">${book.bookname}</a>
                             <div class="new_prod_bg">
-                                <a href="details.html"><img src="images/thumb1.gif" alt="" title="" class="thumb" border="0" /></a>
+                                <a href="#" onclick="bookDetail(${book.id})"><img src="${book.image}" alt="" title="" class="thumb" border="0" style="width: 60px;height: 90px"/></a>
                             </div>
                         </div>
-
-                        <div class="new_prod_box">
-                            <a href="details.html">product name</a>
-                            <div class="new_prod_bg">
-                                <a href="details.html"><img src="images/thumb2.gif" alt="" title="" class="thumb" border="0" /></a>
-                            </div>
-                        </div>
-
-                        <div class="new_prod_box">
-                            <a href="details.html">product name</a>
-                            <div class="new_prod_bg">
-                                <a href="details.html"><img src="images/thumb3.gif" alt="" title="" class="thumb" border="0" /></a>
-                            </div>
-                        </div>
-
-                        <div class="new_prod_box">
-                            <a href="details.html">product name</a>
-                            <div class="new_prod_bg">
-                                <a href="details.html"><img src="images/thumb1.gif" alt="" title="" class="thumb" border="0" /></a>
-                            </div>
-                        </div>
-
-                        <div class="new_prod_box">
-                            <a href="details.html">product name</a>
-                            <div class="new_prod_bg">
-                                <a href="details.html"><img src="images/thumb2.gif" alt="" title="" class="thumb" border="0" /></a>
-                            </div>
-                        </div>
-
-                        <div class="new_prod_box">
-                            <a href="details.html">product name</a>
-                            <div class="new_prod_bg">
-                                <a href="details.html"><img src="images/thumb3.gif" alt="" title="" class="thumb" border="0" /></a>
-                            </div>
-                        </div>
-
-
-
+                        </c:forEach>
                         <div class="clear"></div>
                     </div>
 
@@ -289,20 +241,21 @@
 
 
 <script>
+
     function buy() {
         var quantity=$("#quantity").val();
         var price=$("#price").text();
         var bookId = ${bookVO.id};
-        alert(quantity +","+ bookId);
+        console.log(price);
+        var subtotal=price*quantity;
         $.ajax({
             url:"creatOrder",
             data:{
                 "bookId":bookId,
-                "price":price,
+                "subtotal":subtotal,
                 "quantity":quantity
             },
             success:function (result) {
-                alert(result);
                 window.location.href="orderProtal"
             }
         })
@@ -342,4 +295,8 @@
     });
 
 </script>
-
+<script>
+    function bookDetail(id) {
+        window.location.href="getBookById?id="+id;
+    }
+</script>

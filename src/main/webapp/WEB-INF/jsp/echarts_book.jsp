@@ -1,10 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Wee Kim Wee
-  Date: 2017/12/28
-  Time: 10:50
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
@@ -139,11 +132,11 @@
                                 <i class="icon-double-angle-right"></i> 图书信息登记
                             </a>
                         </li>
-                        <li>
+                       <%-- <li>
                             <a href="addCa" target="_blank">
                                 <i class="icon-double-angle-right"></i> 图书种类添加与删除
                             </a>
-                        </li>
+                        </li>--%>
 
                     </ul>
                 </li>
@@ -161,11 +154,11 @@
                                 <i class="icon-double-angle-right"></i> 订单列表
                             </a>
                         </li>
-                        <li>
+                       <%-- <li>
                             <a href="#">
                                 <i class="icon-double-angle-right"></i> 订单评论
                             </a>
-                        </li>
+                        </li>--%>
                     </ul>
                 </li>
 
@@ -183,17 +176,17 @@
                             </a>
                         </li>
                         <li>
-                            <a href="#">
+                            <a href="echartsPutInBook">
                                 <i class="icon-double-angle-right"></i>入库信息统计
                             </a>
                         </li>
                         <li>
-                            <a href="#">
+                            <a href="echartsOutBook">
                                 <i class="icon-double-angle-right"></i>出库信息统计
                             </a>
                         </li>
                         <li>
-                            <a href="#">
+                            <a href="echartsMarket">
                                 <i class="icon-double-angle-right"></i>销售信息统计
                             </a>
                         </li>
@@ -234,11 +227,11 @@
             <div class="page-content">
                 <div class="page-header">
                     <h3>
-                        书籍管理
+                        报表管理
                         <small>
                             <i class="icon-double-angle-right"></i>
                         </small>
-                        书籍分类统计
+                        图书分类图
                         <small>
                             <i class="icon-double-angle-right"></i>
                         </small>

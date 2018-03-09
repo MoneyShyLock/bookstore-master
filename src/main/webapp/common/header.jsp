@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--<div class="navbar navbar-default" id="navbar">
     <script type="text/javascript">
         try { ace.settings.check('navbar', 'fixed') } catch(e) {}
@@ -73,7 +74,14 @@
                         <img class="nav-user-photo" src="assets/avatars/user1.jpg" alt="Jason's Photo" />
 								<span class="user-info">
 									<small>欢迎光临,</small>
-									Jason
+
+                                    <c:if test="${Session_Admin.jurisdiction==0}">
+                                        超级管理员
+                                    </c:if>
+                                    <c:if test="${Session_Admin.jurisdiction!=0}">
+                                        管理员
+                                    </c:if>
+									${Session_Admin.name}
 								</span>
 
                         <i class="icon-caret-down"></i>

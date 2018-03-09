@@ -65,7 +65,152 @@
         <a class="menu-toggler" id="menu-toggler" href="#">
             <span class="menu-text"></span>
         </a>
-        <jsp:include page="/common/menu.jsp"></jsp:include>
+        <%--<jsp:include page="/common/menu.jsp"></jsp:include>--%>
+        <div class="sidebar" id="sidebar">
+            <script type="text/javascript">
+                try { ace.settings.check('sidebar', 'fixed') } catch(e) {}
+            </script>
+            <ul class="nav nav-list">
+                <li>
+                    <a href="index">
+                        <i class="icon-dashboard"></i>
+                        <span class="menu-text">首页 </span>
+                    </a>
+                </li>
+
+                <li >
+                    <a href="#" class="dropdown-toggle">
+                        <i class="icon-desktop"></i>
+                        <span class="menu-text"> 管理员管理 </span>
+
+                        <b class="arrow icon-angle-down"></b>
+                    </a>
+
+                    <ul class="submenu">
+
+                        <li>
+                            <!--查看所有的管理员-->
+                            <a href="listAdmins">
+                                <i class="icon-double-angle-right"></i> 管理员列表
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li>
+                    <a href="#" class="dropdown-toggle">
+                        <i class="icon-list"></i>
+                        <span class="menu-text"> 用户管理 </span>
+                        <b class="arrow icon-angle-down"></b>
+                    </a>
+
+                    <ul class="submenu">
+                        <li>
+                            <!--普通用户管理-->
+                            <a href="listUsers">
+                                <i class="icon-double-angle-right"></i> 普通用户管理
+                            </a>
+                        </li>
+                        <li>
+                            <!--vip用户管理-->
+                            <a href="listVips" class="dropdown-toggle">
+                                <i class="icon-pencil"></i> VIP用户管理
+                            </a>
+                        </li>
+
+                    </ul>
+                </li>
+
+                <li>
+                    <a href="#" class="dropdown-toggle">
+                        <i class="icon-tag"></i>
+                        <span class="menu-text"> 图书管理 </span>
+                        <b class="arrow icon-angle-down"></b>
+                    </a>
+
+                    <ul class="submenu">
+                        <li>
+                            <a href="listBooks">
+                                <i class="icon-double-angle-right"></i> 图书列表
+                            </a>
+                        </li>
+                        <li>
+                            <a href="addBook" target="_blank">
+                                <i class="icon-double-angle-right"></i> 图书信息登记
+                            </a>
+                        </li>
+                        <%-- <li>
+                             <a href="addCa" target="_blank">
+                                 <i class="icon-double-angle-right"></i> 图书种类添加与删除
+                             </a>
+                         </li>--%>
+
+                    </ul>
+                </li>
+
+                <li>
+                    <a href="#" class="dropdown-toggle">
+                        <i class="icon-tag"></i>
+                        <span class="menu-text"> 订单管理 </span>
+                        <b class="arrow icon-angle-down"></b>
+                    </a>
+
+                    <ul class="submenu">
+                        <li>
+                            <a href="listOrders">
+                                <i class="icon-double-angle-right"></i> 订单列表
+                            </a>
+                        </li>
+                        <%-- <li>
+                             <a href="#">
+                                 <i class="icon-double-angle-right"></i> 订单评论
+                             </a>
+                         </li>--%>
+                    </ul>
+                </li>
+
+                <li class="active open">
+                    <a href="#" class="dropdown-toggle">
+                        <i class="icon-tag"></i>
+                        <span class="menu-text"> 报表管理 </span>
+                        <b class="arrow icon-angle-down"></b>
+                    </a>
+
+                    <ul class="submenu">
+                        <li>
+                            <a href="countBooks">
+                                <i class="icon-double-angle-right"></i> 图书分类统计
+                            </a>
+                        </li>
+                        <li>
+                            <a href="echartsPutInBook">
+                                <i class="icon-double-angle-right"></i>入库信息统计
+                            </a>
+                        </li>
+                        <li  >
+                            <a href="echartsOutBook">
+                                <i class="icon-double-angle-right"></i>出库信息统计
+                            </a>
+                        </li>
+                        <li class="active">
+                            <a href="echartsMarket">
+                                <i class="icon-double-angle-right"></i>销售信息统计
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+            </ul>
+            <!-- /.nav-list -->
+
+            <div class="sidebar-collapse" id="sidebar-collapse">
+                <i class="icon-double-angle-left" data-icon1="icon-double-angle-left" data-icon2="icon-double-angle-right"></i>
+            </div>
+
+            <script type="text/javascript">
+                try { ace.settings.check('sidebar', 'collapsed') } catch(e) {}
+            </script>
+        </div>
 
         <div class="main-content">
             <div class="breadcrumbs" id="breadcrumbs">
@@ -89,11 +234,11 @@
             <div class="page-content">
                 <div class="page-header">
                     <h3>
-                        书籍管理
+                        报表管理
                         <small>
                             <i class="icon-double-angle-right"></i>
                         </small>
-                        书籍分类统计
+                        图书销售
                         <small>
                             <i class="icon-double-angle-right"></i>
                         </small>
@@ -103,100 +248,146 @@
                 <!-- /.page-header -->
 
                 <div class="row">
-                    <div id="echarts" style="width:1000px;height:600px;"></div>
+                    <div class="space-6"></div>
+                    <div class="col-sm-7 infobox-container">
+                        <div class="infobox infobox-green  ">
+                            <div class="infobox-icon">
+                                <i class="icon-book"></i>
+                            </div>
+
+                            <div class="infobox-data">
+                                <span class="infobox-data-number">少儿</span>
+                                <div class="infobox-content">${childCount}</div>
+                            </div>
+                            <%--<div class="stat stat-success">8%</div>--%>
+                        </div>
+
+                        <div class="infobox infobox-blue  ">
+                            <div class="infobox-icon">
+                                <i class="icon-twitter"></i>
+                            </div>
+
+                            <div class="infobox-data">
+                                <span class="infobox-data-number">文学</span>
+                                <div class="infobox-content">${literatureCount}</div>
+                            </div>
+
+                            <%--<div class="badge badge-success">
+                                +32%
+                                <i class="icon-arrow-up"></i>
+                            </div>--%>
+                        </div>
+
+                        <div class="infobox infobox-pink  ">
+                            <div class="infobox-icon">
+                                <i class="icon-shopping-cart"></i>
+                            </div>
+
+                            <div class="infobox-data">
+                                <span class="infobox-data-number">小说</span>
+                                <div class="infobox-content">${novelCount}</div>
+                            </div>
+                           <%-- <div class="stat stat-important">4%</div>--%>
+                        </div>
+
+                        <div class="infobox infobox-red  ">
+                            <div class="infobox-icon">
+                                <i class="icon-beaker"></i>
+                            </div>
+
+                            <div class="infobox-data">
+                                <span class="infobox-data-number">经济管理</span>
+                                <div class="infobox-content">${economicManagementCount}</div>
+                            </div>
+                        </div>
+
+                        <div class="infobox infobox-orange2  ">
+                            <div class="infobox-icon">
+                                <i class="icon-beaker"></i>
+                            </div>
+
+                            <div class="infobox-data">
+                                <span class="infobox-data-number">生活</span>
+                                <div class="infobox-content">${lifeCount}</div>
+                            </div>
+
+                           <%-- <div class="badge badge-success">
+                                7.2%
+                                <i class="icon-arrow-up"></i>
+                            </div>--%>
+                        </div>
+
+                        <div class="infobox infobox-blue2  ">
+                           <%-- <div class="infobox-progress">
+                                <div class="easy-pie-chart percentage" data-percent="42" data-size="46">
+                                    <span class="percent">42</span>%
+                                </div>
+                            </div>--%>
+                               <div class="infobox-icon">
+                                   <i class="icon-beaker"></i>
+                               </div>
+                            <div class="infobox-data">
+                                <span class="infobox-text">教材教辅考试</span>
+
+                                <div class="infobox-content">
+                                    <span class="bigger-110"></span>
+                                    ${examCount}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="space-6"></div>
+                    </div>
+                    <div id="echarts" style="width:700px;height:500px;"></div>
                     <script type="text/javascript">
                         // 基于准备好的dom，初始化echarts实例
                         var myChart = echarts.init(document.getElementById('echarts'));
-                        var option = {
-                            tooltip: {
-                                trigger: 'item',
-                                formatter: "{a} <br/>{b}: {c} ({d}%)"
-                            },
-                            legend: {
-                                orient: 'vertical',
+                        option = {
+                            title: {
+                                //主标题文本，'\n'指定换行
+                                text: '图书总销售量',
+                                //水平安放位置，默认为左侧，可选为：'center' | 'left' | 'right' | {number}（x坐标，单位px）
                                 x: 'left',
-                                data: ['少儿', '文学', '小说', '经济管理', '生活', '教材教辅考试']
+                                //垂直安放位置，默认为全图顶端，可选为：'top' | 'bottom' | 'center' | {number}（y坐标，单位px）
+                                y: 'top'
                             },
-                            series: [
+                            color: ['#3398DB'],
+                            tooltip : {
+                                trigger: 'axis',
+                                axisPointer : {            // 坐标轴指示器，坐标轴触发有效
+                                    type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+                                }
+                            },
+                            grid: {
+                                left: '3%',
+                                right: '4%',
+                                bottom: '3%',
+                                containLabel: true
+                            },
+                            xAxis : [
                                 {
-                                    name: '书籍信息统计',
-                                    type: 'pie',
-                                    selectedMode: 'single',
-                                    radius: [0, '30%'],
-
-                                    label: {
-                                        normal: {
-                                            position: 'inner'
-                                        }
-                                    },
-                                    labelLine: {
-                                        normal: {
-                                            show: false
-                                        }
-                                    },
-                                    data: [
-                                        {value:${result.child}, name: '少儿'},
-                                        {value:${result.literature}, name: '文学'},
-                                        {value:${result.novel}, name: '小说'},
-                                        {value:${result.economicManagement}, name: '经济管理'},
-                                        {value:${result.life}, name: '生活'},
-                                        {value:${result.exam}, name: '教材教铺考试'}
-
-                                    ]
-                                },
+                                    type : 'category',
+                                    data : ['少儿', '文学', '小说', '经济管理', '生活', '教材教辅考试'],
+                                    axisTick: {
+                                        alignWithLabel: true
+                                    }
+                                }
+                            ],
+                            yAxis : [
                                 {
-                                    name: '书籍信息统计',
-                                    type: 'pie',
-                                    radius: ['40%', '55%'],
-                                    label: {
-                                        normal: {
-                                            formatter: '{a|{a}}{abg|}\n{hr|}\n  {b|{b}：}{c}  {per|{d}%}  ',
-                                            backgroundColor: '#eee',
-                                            borderColor: '#aaa',
-                                            borderWidth: 1,
-                                            borderRadius: 4,
-                                            // shadowBlur:3,
-                                            // shadowOffsetX: 2,
-                                            // shadowOffsetY: 2,
-                                            // shadowColor: '#999',
-                                            // padding: [0, 7],
-                                            rich: {
-                                                a: {
-                                                    color: '#999',
-                                                    lineHeight: 22,
-                                                    align: 'center'
-                                                },
-                                                hr: {
-                                                    borderColor: '#aaa',
-                                                    width: '100%',
-                                                    borderWidth: 0.5,
-                                                    height: 0
-                                                },
-                                                b: {
-                                                    fontSize: 16,
-                                                    lineHeight: 33
-                                                },
-                                                per: {
-                                                    color: '#eee',
-                                                    backgroundColor: '#334455',
-                                                    padding: [2, 4],
-                                                    borderRadius: 2
-                                                }
-                                            }
-                                        }
-                                    },
-                                    data: [
-                                        {value:${result.child}, name: '少儿'},
-                                        {value:${result.literature}, name: '文学'},
-                                        {value:${result.novel}, name: '小说'},
-                                        {value:${result.economicManagement}, name: '经济管理'},
-                                        {value:${result.life}, name: '生活'},
-                                        {value:${result.exam}, name: '教材教铺考试'}
-                                    ]
+                                    type : 'value'
+                                }
+                            ],
+                            series : [
+                                {
+                                    name:'直接访问',
+                                    type:'bar',
+                                    barWidth: '60%',
+                                    data:[${marketCount.child},${marketCount.literature},${marketCount.novel},${marketCount.economicManagement},
+                                        ${marketCount.life},${marketCount.exam}]
                                 }
                             ]
                         };
-
                         // 使用刚指定的配置项和数据显示图表。
                         myChart.setOption(option);
 

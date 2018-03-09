@@ -1,5 +1,6 @@
 package com.bookstore.controller;
 
+import com.bookstore.pojo.po.Admin;
 import com.bookstore.pojo.po.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,9 +16,12 @@ public class PageController {
      * @return
      */
     @RequestMapping("/index")
-    public String toBackgroudIndex(){
+    public String toBackgroudIndex(HttpSession session){
+        Admin admin=(Admin) session.getAttribute("Session_Admin");
+        if(admin!=null)
+          return "index";
+        return  "signin";
 
-        return "index";
     }
 
     /**

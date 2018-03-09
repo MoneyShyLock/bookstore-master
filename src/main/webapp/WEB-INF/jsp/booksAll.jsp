@@ -58,10 +58,13 @@
 
             <div class="new_products">
             <c:forEach items="${protalPageInfo.list}" var="book">
-                <div style="clear: both">
-                    <a href="#" onclick="bookDetail(${book.id})">${book.bookname}</a>
+                <div class="new_prod_box">
+                    <a href="#" onclick="bookDetail(${book.id})">
+                    <c:if test="${book.bookname.length()>5}"> ${book.bookname.substring(0,5)}...</a></c:if>
+                    <c:if test="${book.bookname.length()<6}"> ${book.bookname}</a></c:if>
                     <div class="new_prod_bg">
-                    <a href="#" onclick="bookDetail(${book.id})"><img src="${book.image}" alt="" title="" class="thumb" border="0" style="width: 60px;height: 100px"/></a>
+                        <span class="new_icon"><img src="" alt="" title="" /></span>
+                        <a href="#" onclick="bookDetail(${book.id})"><img src="${book.image}" alt="" title="" class="thumb" border="0" style="width: 60px;height: 100px"/></a>
                     </div>
                 </div>
             </c:forEach>
@@ -120,7 +123,9 @@
             <div class="about">
                 <p>
                     <img src="images/about.gif" alt="" title="" class="right" />
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.
+                    　　北京博众博阅文化传媒有限公司成立于2014年10月，以推广 学龄前儿童阅读项目为起点，以深度研究开发互联网+文化传媒 创意产业链为目标的创新型公司。
+                    创立伊始，便凭借独特的运营模式和社会公益理念，顺利赢 得天使投资人的青睐和投资机构的多次入资。公司成立后的半 年，就已占有全国近三分之二的市场，
+                    为全国198个城市、万所 幼儿园免费建立了启阅绘本馆，为幼儿提供了近500万册的优质 绘本。
                 </p>
 
             </div>

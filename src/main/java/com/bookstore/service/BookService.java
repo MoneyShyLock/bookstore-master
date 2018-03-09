@@ -48,4 +48,7 @@ public interface BookService {
     CountBook countBook();
 
 
+    List<Book> getBookByKinds(Integer kinds);
+
+    Book getBookById(Long bookId);
 }

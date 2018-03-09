@@ -35,7 +35,7 @@
     <div class="sign-in-wrapper">
         <div class="sign-in-inner">
             <div class="login-brand text-center">
-                <i class="fa fa-database m-right-xs"></i> BookStore <strong class="text-skin">用户注册界面</strong>
+                 BookStore <strong class="text-skin">用户注册界面</strong>
             </div>
 
             <form id="register_form">

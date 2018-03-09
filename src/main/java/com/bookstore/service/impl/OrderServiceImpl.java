@@ -5,7 +5,10 @@ import com.alibaba.fastjson.JSONObject;
 import com.bookstore.common.util.JsonUtils;
 import com.bookstore.dao.OrderCustomMapper;
 import com.bookstore.dao.OrderItemCustomMapper;
+import com.bookstore.dao.OrderItemMapper;
+import com.bookstore.dao.OrdersMapper;
 import com.bookstore.pojo.po.OrderItem;
+import com.bookstore.pojo.po.Orders;
 import com.bookstore.pojo.vo.ContentVo;
 import com.bookstore.pojo.vo.OrdersVO;
 import com.bookstore.service.OrderService;
@@ -24,6 +27,10 @@ import java.util.List;
  */
 @Service
 public class OrderServiceImpl implements OrderService{
+    @Autowired
+    private OrdersMapper ordersMapper;
+    @Autowired
+    private OrderItemMapper orderItemMapper;
     @Autowired
     private OrderCustomMapper orderCustomMapper;
     @Autowired
@@ -53,15 +60,26 @@ public class OrderServiceImpl implements OrderService{
 
     @Override
     public List<OrdersVO> getOrderByUid(Long uid) {
-
         List<OrdersVO> ordersVOs=orderCustomMapper.getOrderByUid(uid);
-
-
         for(OrdersVO ordersVO:ordersVOs) {
            List<ContentVo> contentVo= JSONArray.parseArray(ordersVO.getContent(), ContentVo.class);
             ordersVO.setBooks(contentVo);
         }
-
         return ordersVOs;
+    }
+
+    @Override
+    public void insert(Orders order) {
+        ordersMapper.insert(order);
+    }
+
+    @Override
+    public void insertItem(OrderItem orderItem) {
+        orderItemMapper.insert(orderItem);
+    }
+
+    @Override
+    public void updateStatu(Orders order) {
+        ordersMapper.updateByPrimaryKeyWithBLOBs(order);
     }
 }

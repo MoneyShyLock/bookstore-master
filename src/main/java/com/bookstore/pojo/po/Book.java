@@ -173,4 +173,27 @@ public class Book {
     public void setKinds(Integer kinds) {
         this.kinds = kinds;
     }
+
+    @Override
+    public String toString() {
+        return "Book{" +
+                "id=" + id +
+                ", bookname='" + bookname + '\'' +
+                ", price=" + price +
+                ", categoryId=" + categoryId +
+                ", author='" + author + '\'' +
+                ", publishTime=" + publishTime +
+                ", sellPoint='" + sellPoint + '\'' +
+                ", created=" + created +
+                ", updated=" + updated +
+                ", inventory=" + inventory +
+                ", salesVolume=" + salesVolume +
+                ", status=" + status +
+                ", likes=" + likes +
+                ", discount=" + discount +
+                ", isbn='" + isbn + '\'' +
+                ", image='" + image + '\'' +
+                ", kinds=" + kinds +
+                '}';
+    }
 }

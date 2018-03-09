@@ -136,11 +136,11 @@
                                 <i class="icon-double-angle-right"></i> 图书信息登记
                             </a>
                         </li>
-                        <li>
+                       <%-- <li>
                             <a href="addCa" target="_blank">
                                 <i class="icon-double-angle-right"></i> 图书种类添加与删除
                             </a>
-                        </li>
+                        </li>--%>
 
                     </ul>
                 </li>
@@ -158,11 +158,11 @@
                                 <i class="icon-double-angle-right"></i> 订单列表
                             </a>
                         </li>
-                        <li>
+                       <%-- <li>
                             <a href="#">
                                 <i class="icon-double-angle-right"></i> 订单评论
                             </a>
-                        </li>
+                        </li>--%>
                     </ul>
                 </li>
 
@@ -180,17 +180,17 @@
                             </a>
                         </li>
                         <li>
-                            <a href="#">
+                            <a href="echartsPutInBook">
                                 <i class="icon-double-angle-right"></i>入库信息统计
                             </a>
                         </li>
                         <li>
-                            <a href="#">
+                            <a href="echartsOutBook">
                                 <i class="icon-double-angle-right"></i>出库信息统计
                             </a>
                         </li>
                         <li>
-                            <a href="#">
+                            <a href="echartsMarket">
                                 <i class="icon-double-angle-right"></i>销售信息统计
                             </a>
                         </li>
@@ -285,7 +285,7 @@
                                                                         pattern="yyyy-MM-d HH:mm:ss EEEE"/></th>
 
                                                     <th class="center">
-                                                        <button class="btn btn-primary btn-sm"
+                                                        <button class="label label-xlg label-primary arrowed arrowed-right"
                                                                 role="button" class="blue"
                                                                 data-toggle="modal"
                                                                 data-target="#userShop"
@@ -293,14 +293,13 @@
                                                            <i class="icon-edit"></i>
                                                             查看
                                                         </button>
-                                                        <button class="btn btn-danger btn-sm" onclick="del(${user.id})">
+                                                        <button class="label label-lg label-pink arrowed-right" onclick="del(${user.id})">
                                                             <span class="icon-trash"
                                                                   aria-hidden="true"></span>
                                                             删除
                                                         </button>
-                                                        <button class="btn btn-primary btn-sm"
+                                                        <button class="label label-xlg label-primary arrowed arrowed-right"
                                                                 onclick="modifyPwd(${user.id})">
-
                                                             初始化密码
                                                         </button>
                                                     </th>

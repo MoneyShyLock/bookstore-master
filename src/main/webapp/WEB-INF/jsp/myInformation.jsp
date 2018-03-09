@@ -70,7 +70,7 @@
                 </form>
             </div>
 
-            <div class="title"><span class="title_icon"><img src="images/bullet2.gif" alt="" title="" /></span>我的地址</div>
+            <div class="title"><span class="title_icon"><img src="images/bullet2.gif" alt="" title="" /></span>我的地址　<small class="prod_title"><a href="javascript:addAddress();">新增地址</a></small></div>
 
             <div class="new_products">
                 <%--默认地址--%>
@@ -112,7 +112,39 @@
                 </c:forEach>
 
             </div>
+            <div class="title"><span class="title_icon"><img src="images/bullet2.gif" alt="" title="" /></span>新增地址</div>
+            <div class="feat_prod_box">
+                <div class="prod_det_box">
+                    <div class="box_top"></div>
+                    <div class="box_center">
+                        <form action="addAddress">
+                            <div>
+                                请选择省市区
+                                <select id="first" name="province" onchange="firstSel()">
+                                    <option value="-1">请选择</option>
+                                    <c:forEach items="${provinces}" var="province">
+                                        <option value="${province.code}">${province.name}</option>
+                                    </c:forEach>
+                                </select>
 
+                                <select id="second" name="city" onchange="sendSel()"></select>
+                                <select id="third" name="area"></select>
+                            </div>
+                            <div>
+                            <label for="addressName">请输入街道详细地址</label>
+                            <input id="addressName" value="" name="addressName">
+                            </div>
+                            <input type="button" value="添加" onclick="addAddress()">
+
+                        </form>
+
+
+                    </div>
+
+                    <div class="box_bottom"></div>
+                </div>
+                <div class="clear"></div>
+            </div>
 
             <div class="clear"></div>
         </div><!--end of left content-->
@@ -148,8 +180,74 @@
 </div>
 </body>
 <script>
+    $(function() {
+        $("#second").hide(); //初始化的时候第二个下拉列表隐藏
+    });
+    function firstSel() {//如果第一个下拉列表的值改变则调用此方法
+        var provinceCode = $("#first").val();//得到第一个下拉列表的值
+        if(provinceCode!=null && "" != provinceCode&& -1 != provinceCode){
+            //通过ajax传入后台，把province数据传到后端
+            $.post("getCityByProvinceCode",{provinceCode:provinceCode},function(data){
+                console.log(data);
+                var option;
+                $.each(data,function(i,city){//循环，i为下标从0开始，city为集合中对应的第i个对象
+                    option += "<option value='"+city.code+"'>"+city.name+"</option>"
+                });
+                $("#second").html(option);//将循环拼接的字符串插入第二个下拉列表
+                $("#second").show();//把第二个下拉列表展示
+            });
+
+        }else {
+            $("#second").hide();
+        }
+    };
+</script>
+<script>
+    $(function() {
+        $("#third").hide(); //初始化的时候第三个下拉列表隐藏
+    });
+    function sendSel() {//如果第一个下拉列表的值改变则调用此方法
+
+        var cityCode = $("#second").val();//得到第一个下拉列表的值
+        console.log(cityCode);
+        if(cityCode!=null && "" != cityCode&& -1 != cityCode){
+            //通过ajax传入后台，把province数据传到后端
+            $.post("getAreaByCityCode",{cityCode:cityCode},function(data){
+                var option;
+                $.each(data,function(i,area){//循环，i为下标从0开始，city为集合中对应的第i个对象
+                    option += "<option value='"+area.code+"'>"+area.name+"</option>"
+                });
+                $("#third").html(option);//将循环拼接的字符串插入第二个下拉列表
+                $("#third").show();//把第二个下拉列表展示
+            });
+
+        }else {
+            $("#third").hide();
+        }
+    };
+</script>
+<script >
     function changeAddress(id) {
         window.location.href="changeAddress?id="+id;
+    }
+
+</script>
+<script>
+    function addAddress(){
+        var province= $("#first").val();
+        var city=$("#second").val();
+        var area=$("#third").val();
+        var addressName=$("#addressName").val();
+        if(addressName!=null&&addressName!=""){
+            $.post("addAddress",{
+                province:province,
+                city:city,
+                area:area,
+                addressName:addressName
+            },function(data){
+               alert(data)
+            });
+        }
     }
 </script>
 </html>

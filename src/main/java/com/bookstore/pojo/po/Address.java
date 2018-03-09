@@ -2,7 +2,6 @@ package com.bookstore.pojo.po;
 
 public class Address {
     private Long id;
-
     private String addrname;
     private Long uid;
 

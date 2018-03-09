@@ -57,7 +57,7 @@ public class AdminController {
     public MessageResult saveAdmin(Admin admin) {
         System.out.println(admin.getJurisdiction());
         MessageResult ms = new MessageResult();
-
+        admin.setJurisdiction(1);
         int count = 0;
 
         try {
@@ -161,7 +161,7 @@ public class AdminController {
     @RequestMapping("/admin_information")
     public String adminInformation(HttpSession session,Model model) {
         Admin sessionAdmin=(Admin) session.getAttribute("Session_Admin");
-        Admin admin=adminService.getAdminById(11L);
+        Admin admin=adminService.getAdminById(sessionAdmin.getId());
         model.addAttribute("adminInformation",admin);
         return "admin_information";
     }

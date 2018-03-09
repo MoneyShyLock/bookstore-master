@@ -26,7 +26,9 @@
                 <li><a href="booksAll">全部图书</a></li>
                 <li><a href="specials">降价图书</a></li>
                 <li><a href="myInformation">我的信息</a></li>
-                <li><a href="register">注册</a></li>
+                <c:if test="${session_User==null}">
+                     <li><a href="register">注册</a></li>
+                </c:if>
                 <li class="selected"><a href="myCart">购物车</a></li>
                 <c:if test="${session_User!=null}">
                     <li><a href="myaccount.html">欢迎你 ${session_User.username}</a></li>
@@ -74,7 +76,7 @@
                                 <td>${cartItem.price}</td>
                                 <td>${cartItem.quantity}</td>
                                 <td>${cartItem.subtotal}</td>
-                               <td><p class="del"><a href="javascript:;" class="delBtn">移除商品</a></p></td>
+                               <td style="width: 100px"><p class="del"><a href="javascript:;" class="delBtn">移除商品</a></p></td>
                             </tr>
                         </c:forEach>
                 </table>

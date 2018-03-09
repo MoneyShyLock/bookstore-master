@@ -159,11 +159,11 @@
                                 <i class="icon-double-angle-right"></i> 订单列表
                             </a>
                         </li>
-                        <li>
+                        <%--<li>
                             <a href="#">
                                 <i class="icon-double-angle-right"></i> 订单评论
                             </a>
-                        </li>
+                        </li>--%>
                     </ul>
                 </li>
 
@@ -181,17 +181,17 @@
                             </a>
                         </li>
                         <li>
-                            <a href="#">
+                            <a href="echartsPutInBook">
                                 <i class="icon-double-angle-right"></i>入库信息统计
                             </a>
                         </li>
                         <li>
-                            <a href="#">
+                            <a href="echartsOutBook">
                                 <i class="icon-double-angle-right"></i>出库信息统计
                             </a>
                         </li>
                         <li>
-                            <a href="#">
+                            <a href="echartsMarket">
                                 <i class="icon-double-angle-right"></i>销售信息统计
                             </a>
                         </li>
@@ -263,7 +263,7 @@
                                             <option value="5">交易成功</option>
                                             <option value="6">交易失败</option>
                                         </select>
-                                        <button onclick="search()" class="btn help-btn">查询</button>
+                                        <button onclick="search()" class="btn btn-app btn-primary btn-xs">查询</button>
                                         <a id="hidden_status" style="display: none">${status}</a>
                                     </div>
 
@@ -321,31 +321,31 @@
 
                                                     <th class="center">${order.amounts}</th>
                                                     <th class="center">
-                                                        <button class="btn btn-primary btn-sm">
+                                                        <span class="label label-xlg label-light arrowed-in-right">
                                                             <a role="button" class="blue" onclick="loadData(${order.id})"
                                                                data-toggle="modal"
                                                                data-target="#orderInformation"
                                                                >
                                                                 查看
                                                             </a>
-                                                        </button>
+                                                        </span>
                                                         <c:if test="${order.status==1}">
-                                                            <button class="btn btn-toolbar btn-sm">
-                                                                <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
-                                                                <a href="javascript:"> 用户未支付 </a>
-                                                            </button>
+                                                            <span class="label label-lg label-purple arrowed">
+
+                                                                <span> 用户未支付 </span>
+                                                            </span>
                                                         </c:if>
                                                         <c:if test="${order.status==2}">
-                                                            <button class="btn btn-toolbar btn-sm">
-                                                                <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                                                            <span class="label label-xlg label-light arrowed-in-right">
+
                                                                 <a href="javascript:up(${order.id} )"> 　通知发货 </a>
-                                                            </button>
+                                                            </span>
                                                         </c:if>
                                                         <c:if test="${order.status==3||order.status==4||order.status==5||order.status==6}">
-                                                            <button class="btn btn-toolbar btn-sm">
-                                                                <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
-                                                                <a href="javascript:"> 已　发　货 </a>
-                                                            </button>
+                                                            <span class="label label-xlg label-light arrowed-in-right">
+
+                                                                <span> 已　发　货 </span>
+                                                            </span>
                                                         </c:if>
 
                                                     </th>

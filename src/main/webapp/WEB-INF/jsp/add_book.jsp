@@ -140,11 +140,11 @@
                                 <i class="icon-double-angle-right"></i> 图书信息登记
                             </a>
                         </li>
-                        <li>
+                        <%--<li>
                             <a href="addCa" target="_blank">
                                 <i class="icon-double-angle-right"></i> 图书种类添加与删除
                             </a>
-                        </li>
+                        </li>--%>
 
                     </ul>
                 </li>
@@ -162,11 +162,11 @@
                                 <i class="icon-double-angle-right"></i> 订单列表
                             </a>
                         </li>
-                        <li>
+                       <%-- <li>
                             <a href="#">
                                 <i class="icon-double-angle-right"></i> 订单评论
                             </a>
-                        </li>
+                        </li>--%>
                     </ul>
                 </li>
 
@@ -184,17 +184,17 @@
                             </a>
                         </li>
                         <li>
-                            <a href="#">
+                            <a href="echartsPutInBook">
                                 <i class="icon-double-angle-right"></i>入库信息统计
                             </a>
                         </li>
                         <li>
-                            <a href="#">
+                            <a href="echartsOutBook">
                                 <i class="icon-double-angle-right"></i>出库信息统计
                             </a>
                         </li>
                         <li>
-                            <a href="#">
+                            <a href="echartsMarket">
                                 <i class="icon-double-angle-right"></i>销售信息统计
                             </a>
                         </li>
@@ -308,10 +308,12 @@
 
                                 <div class="col-sm-9">
                                     <select id="kinds" name="kinds">
-                                        <option value="1" selected="selected">新书推荐</option>
+                                        <option value="0" selected="selected">请选择</option>
+                                        <option value="1" >新书推荐</option>
                                         <option value="2">主编推荐</option>
                                         <option value="3">独家特供</option>
                                         <option value="4">特价图书</option>
+                                        <option value="0" >以上无选项</option>
                                     </select>
                                 </div>
                             </div>
@@ -338,19 +340,19 @@
                                     样书封面上传:</label>
 
                                 <div class="col-sm-6">
-                                    <div class="widget-body">
-                                        <div class="widget-main">
+                                    <div >
+                                        <div>
                                             <input type="file" name="file">
                                         </div>
                                     </div>
                                 </div>
                             </div>
 
-                            <div class="clearfix form-actions">
+                            <div >
                                 <div class="col-md-offset-3 col-md-9">
-                                    <input class="btn btn-primary" type="submit" value="保存">
+                                    <input class="btn btn-app btn-primary btn-xs" type="submit" value="保存">
                                     &nbsp; &nbsp; &nbsp;
-                                    <button class="btn btn-primary" type="reset">
+                                    <button class="btn btn-app btn-primary btn-xs" type="reset">
                                         重置
                                     </button>
                                 </div>

@@ -140,11 +140,11 @@
                                 <i class="icon-double-angle-right"></i> 图书信息登记
                             </a>
                         </li>
-                        <li>
+                       <%-- <li>
                             <a href="addCa" target="_blank">
                                 <i class="icon-double-angle-right"></i> 图书种类添加与删除
                             </a>
-                        </li>
+                        </li>--%>
 
                     </ul>
                 </li>
@@ -162,11 +162,11 @@
                                 <i class="icon-double-angle-right"></i> 订单列表
                             </a>
                         </li>
-                        <li>
+                       <%-- <li>
                             <a href="#">
                                 <i class="icon-double-angle-right"></i> 订单评论
                             </a>
-                        </li>
+                        </li>--%>
                     </ul>
                 </li>
 
@@ -184,17 +184,17 @@
                             </a>
                         </li>
                         <li>
-                            <a href="#">
+                            <a href="echartsPutInBook">
                                 <i class="icon-double-angle-right"></i>入库信息统计
                             </a>
                         </li>
                         <li>
-                            <a href="#">
+                            <a href="echartsOutBook">
                                 <i class="icon-double-angle-right"></i>出库信息统计
                             </a>
                         </li>
                         <li>
-                            <a href="#">
+                            <a href="echartsMarket">
                                 <i class="icon-double-angle-right"></i>销售信息统计
                             </a>
                         </li>
@@ -234,11 +234,11 @@
             <div class="page-content">
                 <div class="page-header">
                     <h3>
-                        书籍管理
+                        报表管理
                         <small>
                             <i class="icon-double-angle-right"></i>
                         </small>
-                        图表
+                        图书分类图
                         <small>
                             <i class="icon-double-angle-right"></i>
                         </small>
@@ -252,12 +252,15 @@
                         <div class="page-content" style="display: inline">
                             <div class="row">
                                 <div class="col-sm-7" >
-                                    <div id="usernum" style="width:480px; height: 200px;"></div>
+                                    <div id="parent" style="width:480px; height: 200px;"></div>
                                 </div>
                             </div>
                             <div class="hr hr32 hr-dotted"></div>
                             <div class="col-sm-6">
-                                <div id="userInsert" style="width:480px; height: 230px;"></div>
+                                <div id="category" style="width:480px; height: 230px;"></div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div id="book" style="width:480px; height: 230px;"></div>
                             </div>
                             <div class="col-sm-5">
                                 <div class="widget-body">
@@ -304,6 +307,7 @@
             dataType: "json",
             success: function (result) {                    //result为返回值
                 console.log(result);
+                if (result!=null){
                 //指定图标的配置和数据
                 var option = {
                     title: {
@@ -320,9 +324,10 @@
                     }]
                 };
                 //初始化echarts实例
-                var myChart = echarts.init(document.getElementById('usernum'));
+                var myChart = echarts.init(document.getElementById('parent'));
                 //使用制定的配置项和数据显示图表
                 myChart.setOption(option);
+                }
             },
             error: function () {
                 alert("服务器异常")

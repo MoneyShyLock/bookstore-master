@@ -137,11 +137,11 @@
                                 <i class="icon-double-angle-right"></i> 图书信息登记
                             </a>
                         </li>
-                        <li>
+                        <%--<li>
                             <a href="addCa" target="_blank">
                                 <i class="icon-double-angle-right"></i> 图书种类添加与删除
                             </a>
-                        </li>
+                        </li>--%>
 
                     </ul>
                 </li>
@@ -159,11 +159,11 @@
                                 <i class="icon-double-angle-right"></i> 订单列表
                             </a>
                         </li>
-                        <li>
+                       <%-- <li>
                             <a href="#">
                                 <i class="icon-double-angle-right"></i> 订单评论
                             </a>
-                        </li>
+                        </li>--%>
                     </ul>
                 </li>
 
@@ -249,13 +249,7 @@
                                         管理员列表
                                         <input id="query" type="search" name="query" placeholder="查询条件"
                                                value="${query }">
-                                        <select id="jurisdiction" name="jurisdiction">
-                                            <option value="">请选择</option>
-                                            <option value="1">用户管理员</option>
-                                            <option value="2">书籍管理员</option>
-                                            <option value="3">订单管理员</option>
-                                            <option value="4">报表管理员</option>
-                                        </select>
+
                                         <button onclick="search()" class="btn btn-app btn-primary btn-xs">查询</button>
                                         <a id="hidden_jurisdiction" style="display: none">${jurisdiction}</a>
                                     </div>
@@ -316,43 +310,29 @@
                                                             超级管理员
                                                         </th>
                                                     </c:if>
-                                                    <c:if test="${admin.jurisdiction==1}">
+                                                    <c:if test="${admin.jurisdiction!=0}">
                                                         <th>
-                                                            用户管理员
+                                                            管理员
                                                         </th>
                                                     </c:if>
-                                                    <c:if test="${admin.jurisdiction==2}">
-                                                        <th>
-                                                            图书管理员
-                                                        </th>
-                                                    </c:if>
-                                                    <c:if test="${admin.jurisdiction==3}">
-                                                        <th>
-                                                            订单管理员
-                                                        </th>
-                                                    </c:if>
-                                                    <c:if test="${admin.jurisdiction==4}">
-                                                        <th>
-                                                            报表管理员
-                                                        </th>
-                                                    </c:if>
+
                                                     <th><fmt:setLocale value="zh"/>
                                                         <fmt:formatDate value="${admin.lastLoginTime}"
                                                                         pattern="yyyy-MM-d HH:mm:ss EEEE"/></th>
 
                                                     <c:if test="${admin.isDelete==0}">
                                                         <th>
-                                                            <a onclick="del(${admin.id},${admin.jurisdiction})"> 禁用 </a>
+                                                            <a onclick="del(${admin.id},${Session_Admin.jurisdiction})"> 禁用 </a>
                                                         </th>
                                                     </c:if>
                                                     <c:if test="${admin.isDelete==1}">
                                                         <th>
-                                                            <a onclick="del(${admin.id},${admin.jurisdiction})"> 禁用 </a>
+                                                            <a onclick="del(${admin.id},${Session_Admin.jurisdiction})"> 禁用 </a>
                                                         </th>
                                                     </c:if>
                                                     <c:if test="${admin.isDelete==99}">
                                                         <th>
-                                                            <a onclick="jiechu(${admin.id})"> 解除 </a>
+                                                            <a onclick="jiechu(${admin.id},${Session_Admin.jurisdiction})"> 解禁 </a>
                                                         </th>
                                                     </c:if>
 
@@ -528,7 +508,7 @@
 
 <script>
     function del(aid, jurisdiction) {
-        if (jurisdiction == 0) {
+        if (jurisdiction != 0) {
             alert("您没有权限");
             return;
         }
@@ -546,7 +526,11 @@
         }
     }
 
-    function jiechu(aid) {
+    function jiechu(aid,jurisdiction) {
+        if (jurisdiction != 0) {
+            alert("您没有权限");
+            return;
+        }
         var flag = window.confirm("您确定要解禁这个管理员吗？");
         if (del) {
             $.ajax({

@@ -81,7 +81,6 @@
                     </a>
 
                     <ul class="submenu">
-
                         <li>
                             <!--查看所有的管理员-->
                             <a href="listAdmins">
@@ -133,12 +132,6 @@
                                 <i class="icon-double-angle-right"></i> 图书信息登记
                             </a>
                         </li>
-                        <li>
-                            <a href="addCa" target="_blank">
-                                <i class="icon-double-angle-right"></i> 图书种类添加与删除
-                            </a>
-                        </li>
-
                     </ul>
                 </li>
 
@@ -153,11 +146,6 @@
                         <li>
                             <a href="listOrders">
                                 <i class="icon-double-angle-right"></i> 订单列表
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <i class="icon-double-angle-right"></i> 订单评论
                             </a>
                         </li>
                     </ul>
@@ -177,17 +165,17 @@
                             </a>
                         </li>
                         <li>
-                            <a href="#">
+                            <a href="echartsPutInBook">
                                 <i class="icon-double-angle-right"></i>入库信息统计
                             </a>
                         </li>
                         <li>
-                            <a href="#">
+                            <a href="echartsOutBook">
                                 <i class="icon-double-angle-right"></i>出库信息统计
                             </a>
                         </li>
                         <li>
-                            <a href="#">
+                            <a href="echartsMarket">
                                 <i class="icon-double-angle-right"></i>销售信息统计
                             </a>
                         </li>

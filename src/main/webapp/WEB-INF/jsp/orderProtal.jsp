@@ -47,32 +47,32 @@
 
             <div class="feat_prod_box_details">
 
-                <table class="cart_table">
+                <table class="cart_table" style="width: 80%">
 
                     <tr>
                         <td>收货地址</td>
-                        <td>Book name</td>
+                        <td><input type="text" placeholder="${address.addrname}"></td>
                     </tr>
                     <tr>
                         <td>收货人　</td>
-                        <td>Book name</td>
+                        <td><input type="text" placeholder="${session_User.username}"></td>
                     </tr>
                     <tr>
                         <td>联系电话</td>
-                        <td>Book name</td>
+                        <td><input type="text" placeholder="${session_User.tel}"></td>
                     </tr>
                     <tr>
                         <td>商品项目</td>
-                        <td>Book name</td>
+                        <td>《${book.bookname}》</td>
                     </tr>
                     <tr>
                         <td>需付金额</td>
-                        <td>Book name</td>
+                        <td>${orderItem.subtotal }</td>
                     </tr>
 
                 </table>
                 <a href="#" class="continue">&lt; 继续购物</a>
-                <a href="#" class="checkout" onclick="account()">提交订单 &gt;</a>
+                <a href="#" class="checkout" onclick="account()">支付 &gt;</a>
             </div>
             <div class="clear"></div>
         </div><!--end of left content-->
@@ -112,11 +112,20 @@
 
 </body>
 <script type="text/javascript">
+    function account(id) {
+        $.ajax({
+            url:"payment",
+
+            success:function (result) {
+               alert("支付成功")
+                window.location.href="protal";
+            }
+        })
+    }
     function detail(id) {
         window.location.href="getBookById?id="+id;
     }
     $(function() {
-
         $("#all").click(function () {//判断全选框的改变
             var flage = $(this).is(":checked");//全选选中为true，否则为false
             $("input[type=checkbox]").each(function () {

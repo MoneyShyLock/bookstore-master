@@ -28,7 +28,7 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    //查询所用普通用户
+    //分页查询普通用户
     @RequestMapping(value = "/listUsers")
     public String listUsers(Model model, @RequestParam(value = "pn", defaultValue = "1") Integer pn, HttpSession session) {
         PageHelper.startPage(pn, 4);
@@ -118,8 +118,6 @@ public class UserController {
     @RequestMapping(value = "/user/login", produces = "application/json;charset=UTF-8",
             method = RequestMethod.POST)
     public MessageResult login(String name, String password, HttpSession session) {
-
-        System.out.println(name + password);
         MessageResult ms = new MessageResult();
         User user = new User();
         user.setUsername(name);

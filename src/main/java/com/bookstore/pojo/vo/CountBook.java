@@ -2,12 +2,12 @@ package com.bookstore.pojo.vo;
 
 public class CountBook {
 
-    private Integer child;
-    private Integer literature;
-    private Integer novel;
-    private Integer economicManagement;
-    private Integer life;
-    private Integer exam;
+    private Integer child=0;
+    private Integer literature=0;
+    private Integer novel=0;
+    private Integer economicManagement=0;
+    private Integer life=0;
+    private Integer exam=0;
 
     public Integer getChild() {
         return child;
@@ -55,5 +55,17 @@ public class CountBook {
 
     public void setExam(Integer exam) {
         this.exam = exam;
+    }
+
+    @Override
+    public String toString() {
+        return "CountBook{" +
+                "child=" + child +
+                ", literature=" + literature +
+                ", novel=" + novel +
+                ", economicManagement=" + economicManagement +
+                ", life=" + life +
+                ", exam=" + exam +
+                '}';
     }
 }

@@ -140,11 +140,11 @@
                                 <i class="icon-double-angle-right"></i> 图书信息登记
                             </a>
                         </li>
-                        <li>
+                      <%--  <li>
                             <a href="addCa" target="_blank">
                                 <i class="icon-double-angle-right"></i> 图书种类添加与删除
                             </a>
-                        </li>
+                        </li>--%>
 
                     </ul>
                 </li>
@@ -162,11 +162,11 @@
                                 <i class="icon-double-angle-right"></i> 订单列表
                             </a>
                         </li>
-                        <li>
+                        <%--<li>
                             <a href="#">
                                 <i class="icon-double-angle-right"></i> 订单评论
                             </a>
-                        </li>
+                        </li>--%>
                     </ul>
                 </li>
 
@@ -370,21 +370,7 @@
                                                 </div>
                                             </c:if>
                                         </div>
-                                        <div class="profile-info-row">
 
-                                            <c:if test="${adminInformation.jurisdiction==1}">
-                                                <div class="profile-info-value">
-                                                    <span class="editable">Book Manager</span>
-                                                </div>
-                                            </c:if>
-                                        </div>
-                                        <div class="profile-info-row">
-                                            <c:if test="${adminInformation.jurisdiction==1}">
-                                                <div class="profile-info-value">
-                                                    <span class="editable">Report Manager</span>
-                                                </div>
-                                            </c:if>
-                                        </div>
                                     </div>
 
                                 </div>

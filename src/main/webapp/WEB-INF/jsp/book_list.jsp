@@ -141,11 +141,11 @@
                                 <i class="icon-double-angle-right"></i> 图书信息登记
                             </a>
                         </li>
-                        <li>
+                        <%--<li>
                             <a href="addCa" target="_blank">
                                 <i class="icon-double-angle-right"></i> 图书种类添加与删除
                             </a>
-                        </li>
+                        </li>--%>
 
                     </ul>
                 </li>
@@ -163,11 +163,11 @@
                                 <i class="icon-double-angle-right"></i> 订单列表
                             </a>
                         </li>
-                        <li>
+                       <%-- <li>
                             <a href="#">
                                 <i class="icon-double-angle-right"></i> 订单评论
                             </a>
-                        </li>
+                        </li>--%>
                     </ul>
                 </li>
 
@@ -185,17 +185,17 @@
                             </a>
                         </li>
                         <li>
-                            <a href="#">
+                            <a href="echartsPutInBook">
                                 <i class="icon-double-angle-right"></i>入库信息统计
                             </a>
                         </li>
                         <li>
-                            <a href="#">
+                            <a href="echartsOutBook">
                                 <i class="icon-double-angle-right"></i>出库信息统计
                             </a>
                         </li>
                         <li>
-                            <a href="#">
+                            <a href="echartsMarket">
                                 <i class="icon-double-angle-right"></i>销售信息统计
                             </a>
                         </li>
@@ -263,7 +263,7 @@
                                         书籍列表
                                         <input id="query" type="search" name="query" placeholder="请输入图书名称"
                                                value="${query }">
-                                        <button onclick="search()" class="btn help-btn">查询</button>
+                                        <button  class="btn btn-app btn-primary btn-xs">查询</button>
                                     </div>
 
                                     <div class="table-responsive">
@@ -275,12 +275,12 @@
                                                     ID
                                                 </th>
                                                 <th style="width: 48%">书名</th>
-                                                <th style="width: 7%">状态</th>
+                                                <th style="width: 7%"  class="center">状态</th>
                                                 <th style="width: 10%">
                                                     <i class="icon-time bigger-110 hidden-480"></i> 入库时间
                                                 </th>
                                                 <th style="width: 5%">库存</th>
-                                                <th style="width: 30%">操作</th>
+                                                <th class="center" style="width: 30%">操作</th>
                                             </tr>
                                             </thead>
                                             <tbody id="dataTbody">
@@ -289,20 +289,21 @@
                                                     <th>${book.id }</th>
                                                     <th>${book.bookname }</th>
                                                     <c:if test="${book.status==1&&book.salesVolume>=50}">
-                                                        <th style="color: red">热销中</th>
+                                                        <th style="color: red"  class="center">热销中<i class="icon-fire"></i></th>
                                                     </c:if>
                                                     <c:if test="${book.status==1&&book.salesVolume<50}">
-                                                        <th>上架</th>
+                                                        <th  class="center">上架</th>
                                                     </c:if>
                                                     <c:if test="${book.status==2}">
-                                                        <th style="color: black">已下架</th>
+                                                        <th style="color: black"  class="center">已下架</th>
                                                     </c:if>
                                                     <th><fmt:setLocale value="zh"/>
                                                         <fmt:formatDate value="${book.created}" pattern="yyyy-MM-d"/>
                                                     </th>
                                                     <th>${book.inventory}</th>
-                                                    <th>
-                                                        <button class="btn btn-primary btn-sm">
+
+                                                    <th class="center">
+                                                        <button class="label label-xlg label-light arrowed-in-right">
                                                             <a role="button" class="blue"
                                                                data-toggle="modal"
                                                                data-target="#book-modal-table"
@@ -311,32 +312,25 @@
                                                             </a>
                                                         </button>
                                                         <c:if test="${book.status==1}">
-                                                            <button class="btn btn-toolbar btn-sm"
-                                                                    onclick="down(${book.id} )">
-                                                                <span class="glyphicon glyphicon-trash"
-                                                                      aria-hidden="true"></span>
-                                                                下架
+                                                            <button class="label label-xlg label-light arrowed-in-right blue">
+                                                                <a href="javascript:down(${book.id} )"> 下架 </a>
                                                             </button>
                                                         </c:if>
                                                         <c:if test="${book.status==2}">
-                                                            <button class="btn btn-toolbar btn-sm">
-                                                                <span class="glyphicon glyphicon-trash"
-                                                                      aria-hidden="true"></span>
+                                                            <button class="label label-xlg label-light arrowed-in-right">
                                                                 <a href="javascript:up(${book.id} )"> 上架 </a>
                                                             </button>
                                                         </c:if>
-                                                        <button class="btn btn-toolbar btn-sm" onclick="add(${book.id})">
-                                                            <span class="glyphicon glyphicon-trash"
-                                                                  aria-hidden="true"></span>
+                                                        <button class="label label-xlg label-light arrowed-in-right" onclick="add(${book.id})">
+
                                                             <input type="hidden"  id="bookAddName${book.id}" value="${book.bookname}">
                                                             <input type="hidden"  id="bookAddId${book.id}" value="${book.id}">
                                                             <a  role="button" class="blue"
                                                                 data-toggle="modal"
                                                                 data-target="#book-modal-add"> 入库 </a>
                                                         </button>
-                                                        <button class="btn btn-toolbar btn-sm" onclick="sub(${book.id})">
-                                                            <span class="glyphicon glyphicon-trash"
-                                                                  aria-hidden="true"></span>
+                                                        <button class="label label-xlg label-light arrowed-in-right" onclick="sub(${book.id})">
+
                                                             <input type="hidden"  id="bookOutName${book.id}" value="${book.bookname}">
                                                             <input type="hidden"  id="bookOutId${book.id}" value="${book.id}">
                                                             <a  role="button" class="blue"
@@ -441,7 +435,6 @@
                         <span class="white">&times;</span>
                     </button>
                     图书详情
-
                 </div>
             </div>
 
@@ -451,7 +444,7 @@
                 </table>
             </div>
             <div class="modal-footer">
-                <a href="#" class="btn" data-dismiss="modal">取消</a>
+                <a href="#" class="label label-xlg label-primary arrowed arrowed-right" data-dismiss="modal">关闭</a>
             </div>
 
         </div><!-- /.modal-content -->
@@ -489,8 +482,8 @@
                 </form>
             </div>
             <div class="modal-footer">
-                <input type="button" class="btn btn-default" onclick="addBook()" value="提交">
-                <a href="#" class="btn" data-dismiss="modal">取消</a>
+                <a href="#" class="label label-xlg label-primary arrowed arrowed-right" onclick="addBook()">提交</a>
+                <a href="#" class="label label-xlg label-primary arrowed arrowed-right" data-dismiss="modal">取消</a>
             </div>
 
         </div><!-- /.modal-content -->
@@ -528,8 +521,9 @@
                 </form>
             </div>
             <div class="modal-footer">
-                <input type="button" class="btn btn-default" onclick="outBook()" value="提交">
-                <a href="#" class="btn" data-dismiss="modal">取消</a>
+
+                <a href="#" class="label label-xlg label-primary arrowed arrowed-right" onclick="outBook()">提交</a>
+                <a href="#" class="label label-xlg label-primary arrowed arrowed-right" data-dismiss="modal">取消</a>
             </div>
 
         </div><!-- /.modal-content -->
@@ -604,7 +598,6 @@
 <%--上架图书--%>
 <script>
     function up(ids) {
-        var up = window.confirm("您确定要上架这本书吗？");
 
         if (up) {
             $.ajax({
@@ -648,28 +641,28 @@
                 console.log(data);
                 var $showDetail = $('#showDetail');
                 var str = ' <tr>';
-                str += '<td class="center" style="width: 30%;">书名</td>';
-                str += '<td class="center">' + data.bookname + '</td>';
+                str += '<td class="center" style="width: 30%;">书名:</td>';
+                str += '<td >' + data.bookname + '</td>';
                 str += '</tr>';
                 str += '<tr>';
-                str += '<td class="center">作者</td>';
-                str += '<td class="center">' + data.author + '</td>';
+                str += '<td  class="center">作者:</td>';
+                str += '<td>' + data.author + '</td>';
                 str += '</tr>';
                 str += ' <tr>';
-                str += '<td class="center">图书类别</td>';
-                str += '<td class="center">' + data.categoryName + '读物</td>';
+                str += '<td class="center">图书类别:</td>';
+                str += '<td>' + data.categoryName + '读物</td>';
                 str += '</tr>';
                 str += ' <tr>';
-                str += '<td class="center">入库价格</td>';
-                str += '<td class="center">' + data.isbn + 'RMB</td>';
+                str += '<td class="center">入库价格:</td>';
+                str += '<td>' + data.isbn + 'RMB</td>';
                 str += '</tr>';
                 str += ' <tr>';
-                str += '<td class="center">销售价格</td>';
-                str += '<td class="center">' + data.price + 'RMB</td>';
+                str += '<td class="center">销售价格:</td>';
+                str += '<td>' + data.price + 'RMB</td>';
                 str += '</tr>';
                 str += ' <tr>';
-                str += '<td class="center">图书简介</td>';
-                str += '<td class="center">' + data.sellPoint + '</td>';
+                str += '<td  class="center" valign=top >图书简介:</td>';
+                str += '<td>' + data.sellPoint + '</td>';
                 str += '</tr>';
 
 

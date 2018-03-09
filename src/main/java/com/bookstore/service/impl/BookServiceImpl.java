@@ -202,4 +202,17 @@ public class BookServiceImpl implements BookService {
     public CountBook countBook() {
         return bookCustomMapper.countBooks();
     }
+
+    @Override
+    public List<Book> getBookByKinds(Integer kinds) {
+        BookExample example = new BookExample();
+        BookExample.Criteria criteria = example.createCriteria();
+        criteria.andKindsEqualTo(kinds);
+        return bookMapper.selectByExample(example);
+    }
+
+    @Override
+    public Book getBookById(Long bookId) {
+        return bookMapper.selectByPrimaryKey(bookId);
+    }
 }
