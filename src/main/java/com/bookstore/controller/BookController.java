@@ -48,7 +48,7 @@ public class BookController {
 
     //查询所有的图书  默认按照书名的模糊查询
     @RequestMapping(value = "/listBooks")
-    public String listAdmins(Model model, @RequestParam(value = "pn", defaultValue = "1") Integer pn, @RequestParam(defaultValue = "") String query, HttpSession session) {
+    public String listBooks(Model model, @RequestParam(value = "pn", defaultValue = "1") Integer pn, @RequestParam(defaultValue = "") String query, HttpSession session) {
         String encodeQuery = null;
         try {
             encodeQuery = java.net.URLDecoder.decode(query, "UTF-8");

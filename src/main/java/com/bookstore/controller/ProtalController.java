@@ -164,6 +164,13 @@ public class ProtalController {
         return new ModelAndView("redirect:/myInformation");
 
     }
+    //删除地址
+    @RequestMapping("/deleteAddress")
+    public ModelAndView deleteAddress(ModelAndView modelAndView, HttpSession session,@RequestParam("id") Long id) {
+        addressService.deleteAddress(id);
+        return new ModelAndView("redirect:/myInformation");
+
+    }
     //创建订单
     @ResponseBody
     @RequestMapping("/creatOrder")
@@ -171,6 +178,41 @@ public class ProtalController {
                                    @RequestParam("bookId") Long bookId,
                                    @RequestParam("subtotal") BigDecimal subtotal,
                                    @RequestParam("quantity") Integer quantity) {
+        User sessionUser=(User)session.getAttribute("session_User");
+        //创建订单
+        Orders order = new Orders();
+        order.setCreateTime(new Date());
+        order.setUserId(sessionUser.getId());
+        order.setStatus(1);
+        Long oId=new Long(IDUtil.getId());
+        order.setId(oId);
+        //插入订单
+        try {
+            orderService.insert(order);
+            //创建订单项
+            OrderItem orderItem = new OrderItem();
+            orderItem.setOrderId(oId);
+            orderItem.setCreateTime(new Date());
+            orderItem.setBookId(bookId);
+            orderItem.setQuantity(quantity);
+            orderItem.setSubtotal(subtotal);
+            orderService.insertItem(orderItem);
+            BookVO bookVO=bookService.getBookForBack(bookId);
+            session.setAttribute("book",bookVO);
+            session.setAttribute("orderItem",orderItem);
+            return "success";
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return "fail";
+    }
+    //购物车创建订单
+    @ResponseBody
+    @RequestMapping("/creatOrderFromCart")
+    public String creatOrderFromCart(ModelAndView modelAndView, HttpSession session,
+                             @RequestParam("bookId") Long bookId,
+                             @RequestParam("subtotal") BigDecimal subtotal,
+                             @RequestParam("quantity") Integer quantity) {
         User sessionUser=(User)session.getAttribute("session_User");
         //创建订单
         Orders order = new Orders();

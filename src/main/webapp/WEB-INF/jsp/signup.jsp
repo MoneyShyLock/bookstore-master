@@ -146,8 +146,7 @@
             },
             dataType: "json",
             success: function(result) {                    //result为返回值
-                console.log(result);
-                console.log(result.success);
+
                 if(result.success){
                     alert(result.message+"点击确定跳转到登录界面");
                     window.location.href="toLogin";

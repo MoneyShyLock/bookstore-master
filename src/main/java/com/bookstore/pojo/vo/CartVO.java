@@ -8,6 +8,15 @@ public class CartVO extends Book{
 
     private Integer quantity;
     private BigDecimal subtotal;
+    private Long cartItemId;
+
+    public Long getCartItemId() {
+        return cartItemId;
+    }
+
+    public void setCartItemId(Long cartItemId) {
+        this.cartItemId = cartItemId;
+    }
 
     public Integer getQuantity() {
         return quantity;

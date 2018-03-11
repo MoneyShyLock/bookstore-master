@@ -12,7 +12,6 @@ public interface UserService {
 
     //ajax 校验用户名是否存在
     MessageResult getUserByName(String loginName);
-
     //注册一个用户
     int registerUser(User user);
     //登陆

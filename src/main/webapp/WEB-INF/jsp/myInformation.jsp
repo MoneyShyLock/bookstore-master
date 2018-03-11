@@ -70,7 +70,7 @@
                 </form>
             </div>
 
-            <div class="title"><span class="title_icon"><img src="images/bullet2.gif" alt="" title="" /></span>我的地址　<small class="prod_title"><a href="javascript:addAddress();">新增地址</a></small></div>
+            <div class="title"><span class="title_icon"><img src="images/bullet2.gif" alt="" title="" /></span>我的地址</div>
 
             <div class="new_products">
                 <%--默认地址--%>
@@ -97,7 +97,8 @@
                         <div class="prod_det_box">
                             <div class="box_top"></div>
                             <div class="box_center">
-                                <div class="prod_title" onclick="changeAddress(${addrss.id})"><a href="#">设为默认</a></div>
+                                <div class="prod_title"><a href="#" onclick="changeAddress(${addrss.id})">设为默认</a>
+                                    <a href="#" onclick="deleteAddress(${addrss.id})">删除地址</a></div>
                                 <hr/>
                                 <p class="details">收货地址:${addrss.addrname}</p>
                                 <p class="details">联系方式:${user.tel}</p>
@@ -155,7 +156,7 @@
             <div class="about">
                 <p>
                     <img src="images/about.gif" alt="" title="" class="right" />
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.
+                    北京博众博阅文化传媒有限公司成立于2014年10月，以推广 学龄前儿童阅读项目为起点，以深度研究开发互联网+文化传媒 创意产业链为目标的创新型公司。                    创立伊始，便凭借独特的运营模式和社会公益理念，顺利赢 得天使投资人的青睐和投资机构的多次入资。公司成立后的半 年，就已占有全国近三分之二的市场，                    为全国198个城市、万所 幼儿园免费建立了启阅绘本馆，为幼儿提供了近500万册的优质 绘本。
                 </p>
 
             </div>
@@ -230,7 +231,11 @@
     function changeAddress(id) {
         window.location.href="changeAddress?id="+id;
     }
-
+</script>
+<script >
+    function deleteAddress(id) {
+        window.location.href="deleteAddress?id="+id;
+    }
 </script>
 <script>
     function addAddress(){

@@ -9,4 +9,6 @@ public interface CartItemService {
     void addCartItem(Long bookId, Long id, BigDecimal subtotal,int quantity);
 
     List<CartItem> findByCartId(Long id);
+
+    void delete(Long id);
 }

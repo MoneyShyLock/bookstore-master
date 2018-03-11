@@ -27,4 +27,6 @@ public interface AddressService {
     Area findAreaByCode(String area);
 
     void add(Address address);
+
+    void deleteAddress(Long id);
 }

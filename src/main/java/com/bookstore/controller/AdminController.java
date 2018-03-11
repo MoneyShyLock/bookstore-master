@@ -109,7 +109,6 @@ public class AdminController {
     @RequestMapping(value = "/admin/login", produces = "application/json;charset=UTF-8",
             method = RequestMethod.POST)
     public MessageResult login(String name, String password, HttpSession session) {
-
         System.out.println(name + password);
         MessageResult ms = new MessageResult();
         Admin admin = new Admin();

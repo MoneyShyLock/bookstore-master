@@ -104,4 +104,9 @@ public class AddressServiceImpl implements AddressService {
     public void add(Address address) {
         addressMapper.insert(address);
     }
+
+    @Override
+    public void deleteAddress(Long id) {
+        addressMapper.deleteByPrimaryKey(id);
+    }
 }

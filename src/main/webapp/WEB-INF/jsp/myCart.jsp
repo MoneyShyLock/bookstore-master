@@ -31,7 +31,7 @@
                 </c:if>
                 <li class="selected"><a href="myCart">购物车</a></li>
                 <c:if test="${session_User!=null}">
-                    <li><a href="myaccount.html">欢迎你 ${session_User.username}</a></li>
+                    <li><a href="#">欢迎你 ${session_User.username}</a></li>
                 </c:if>
                 <c:if test="${session_User==null}">
                     <li><a href="toLoginProtal">登录</a></li>
@@ -76,7 +76,7 @@
                                 <td>${cartItem.price}</td>
                                 <td>${cartItem.quantity}</td>
                                 <td>${cartItem.subtotal}</td>
-                               <td style="width: 100px"><p class="del"><a href="javascript:;" class="delBtn">移除商品</a></p></td>
+                               <td style="width: 100px"><p class="del"><a href="javascript:deleteItem(${cartItem.cartItemId});" class="delBtn">移除商品</a></p></td>
                             </tr>
                         </c:forEach>
                 </table>
@@ -89,8 +89,8 @@
                 </table>
 
                 </c:if>
-                <a href="#" class="continue">&lt; 继续购物</a>
-                <a href="#" class="checkout" onclick="account()">结算 &gt;</a>
+                <a href="booksAll" class="continue">&lt; 继续购物</a>
+                <a href="#" class="checkout" onclick="creatOrder()">结算 &gt;</a>
             </div>
             <div class="clear"></div>
         </div><!--end of left content-->
@@ -103,7 +103,7 @@
             <div class="about">
                 <p>
                     <img src="images/about.gif" alt="" title="" class="right" />
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.
+                    北京博众博阅文化传媒有限公司成立于2014年10月，以推广 学龄前儿童阅读项目为起点，以深度研究开发互联网+文化传媒 创意产业链为目标的创新型公司。                    创立伊始，便凭借独特的运营模式和社会公益理念，顺利赢 得天使投资人的青睐和投资机构的多次入资。公司成立后的半 年，就已占有全国近三分之二的市场，                    为全国198个城市、万所 幼儿园免费建立了启阅绘本馆，为幼儿提供了近500万册的优质 绘本。
                 </p>
 
             </div>
@@ -130,17 +130,50 @@
 
 </body>
 <script type="text/javascript">
-    function detail(id) {
-        window.location.href="getBookById?id="+id;
+    function creatOrder(id) {
+        var orderItem=[];
+
+        console.log($("input[type='checkbox']").attr("check",true))
+
+
+        /* var str = "";
+              $("input[type=checkbox]").each(function(){
+                     if($(this).is(":checked"))
+                     {
+
+                     }
+                 });*/
+
+
+
+        $.ajax({
+
+        })
+    }
+
+    function deleteItem(id) {
+        alert(id)
+        $.ajax({
+            url:"deleteItemById",
+            data:{
+                "id":id
+            },
+            success:function (result) {
+                window.location.reload();
+            }
+        })
     }
     $(function() {
+
         $("#shop_c").click(function () {//判断全选框的改变
             var flage = $(this).is(":checked");//全选选中为true，否则为false
             $("input[type=checkbox]").each(function () {
                 $(this).prop("checked", flage);
             })
         })
+
     })
+
 
 </script>
 </html>

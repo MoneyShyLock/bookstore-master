@@ -74,6 +74,7 @@ public class CartController {
                 cartVO.setPrice(bookVO.getPrice());
                 cartVO.setQuantity(cartItem.getQuantity());
                 cartVO.setSubtotal(cartItem.getSubtotal());
+                cartVO.setCartItemId(cartItem.getId());
                 cartVOS.add(cartVO);
             }
             model.addAttribute("cartVOS",cartVOS);
@@ -115,6 +116,19 @@ public class CartController {
             }
         }
         return  ms;
+    }
+    @ResponseBody
+    @RequestMapping("/deleteItemById")
+    public String deleteItemById(HttpSession session,@RequestParam("id") Long id){
+        System.out.println(id);
+        try {
+            cartItemService.delete(id);
+            return "success";
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return "fail";
+
     }
 
 

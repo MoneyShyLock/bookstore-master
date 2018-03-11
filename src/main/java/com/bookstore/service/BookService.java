@@ -35,8 +35,6 @@ public interface BookService {
     //特价图书
     List<BookVO> listBook_specialOffer();
 
-    //销量排行-----日  周  月 年
-
     //前台图书详情
     BookVO getBookForProtal(Long id);
     //后台图书详情

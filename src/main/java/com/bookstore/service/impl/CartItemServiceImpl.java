@@ -37,4 +37,9 @@ public class CartItemServiceImpl implements CartItemService{
         criteria.andCartIdEqualTo(id);
         return cartItemMapper.selectByExample(example);
     }
+
+    @Override
+    public void delete(Long id) {
+        cartItemMapper.deleteByPrimaryKey(id);
+    }
 }
