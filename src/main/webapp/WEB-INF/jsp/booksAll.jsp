@@ -38,7 +38,9 @@
                 <li class="selected"><a href="booksAll">全部图书</a></li>
                 <li><a href="specials">降价图书</a></li>
                 <li><a href="myInformation">我的信息</a></li>
-                <li><a href="register">注册</a></li>
+                <c:if test="${session_User==null}">
+                    <li><a href="register">注册</a></li>
+                </c:if>
                 <li><a href="myCart">购物车</a></li>
                 <c:if test="${session_User!=null}">
                 <li><a href="myaccount.html">欢迎你 ${session_User.username}</a></li>

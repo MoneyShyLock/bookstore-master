@@ -26,10 +26,13 @@
                 <li><a href="booksAll">全部图书</a></li>
                 <li><a href="specials">降价图书</a></li>
                 <li><a href="myInformation">我的信息</a></li>
-                <li><a href="register">注册</a></li>
+                <c:if test="${session_User==null}">
+                    <li><a href="register">注册</a></li>
+                </c:if>
                 <li><a href="myCart">购物车</a></li>
                 <c:if test="${session_User!=null}">
-                    <li><a href="myaccount.html">欢迎你 ${session_User.username}</a></li>
+                    <li>欢迎您: ${session_User.username}</li>
+                    <li><a href='user_logout'>退出</a></li>
                 </c:if>
                 <c:if test="${session_User==null}">
                     <li><a href="toLoginProtal">登录</a></li>
@@ -63,11 +66,16 @@
                     </tr>
                     <tr>
                         <td>商品项目</td>
+                        <c:if test="${size==1}">
                         <td>《${book.bookname}》</td>
+                        </c:if>
+                        <c:if test="${size>1}">
+                            <td>《${book.bookname}》等共${size}本图书</td>
+                        </c:if>
                     </tr>
                     <tr>
                         <td>需付金额</td>
-                        <td>${orderItem.subtotal }</td>
+                        <td>${subtotal }</td>
                     </tr>
 
                 </table>

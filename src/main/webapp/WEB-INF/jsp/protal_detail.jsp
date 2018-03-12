@@ -79,7 +79,8 @@
                 </c:if>
                 <li><a href="myCart">购物车</a></li>
                 <c:if test="${session_User!=null}">
-                    <li><a href="myaccount.html">欢迎你 ${session_User.username}</a></li>
+                    <li>欢迎您: ${session_User.username}</li>
+                    <li><a href='user_logout'>退出</a></li>
                 </c:if>
                 <c:if test="${session_User==null}">
                     <li><a href="toLoginProtal">登录</a></li>

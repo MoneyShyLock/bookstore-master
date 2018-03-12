@@ -31,7 +31,8 @@
                 </c:if>
                 <li class="selected"><a href="myCart">购物车</a></li>
                 <c:if test="${session_User!=null}">
-                    <li><a href="#">欢迎你 ${session_User.username}</a></li>
+                    <li>欢迎您: ${session_User.username}</li>
+                    <li><a href='user_logout' >退出</a></li>
                 </c:if>
                 <c:if test="${session_User==null}">
                     <li><a href="toLoginProtal">登录</a></li>
@@ -68,14 +69,15 @@
                         <c:forEach items="${cartVOS}" var="cartItem">
                             <tr>
                                 <td>
-                                    <input type="checkbox" id="checkbox_8" class="son_check">
+                                    <input type="checkbox" id="checkbox_8" class="son_check" name="cartItem">
                                     <label for="checkbox_8"></label>
                                 </td>
+                                <input type="hidden" value="${cartItem.id}" name="bookId">
                                 <td><a href="#" onclick="detail(${cartItem.id})"><img src="${cartItem.image}" alt="" title="" border="0" class="cart_thumb" /></a></td>
                                 <td>${cartItem.bookname}</td>
-                                <td>${cartItem.price}</td>
-                                <td>${cartItem.quantity}</td>
-                                <td>${cartItem.subtotal}</td>
+                                <td  name="price">${cartItem.price}</td>
+                                <td name="quantity">${cartItem.quantity}</td>
+                                <td name="subtotal">${cartItem.subtotal}</td>
                                <td style="width: 100px"><p class="del"><a href="javascript:deleteItem(${cartItem.cartItemId});" class="delBtn">移除商品</a></p></td>
                             </tr>
                         </c:forEach>
@@ -90,7 +92,7 @@
 
                 </c:if>
                 <a href="booksAll" class="continue">&lt; 继续购物</a>
-                <a href="#" class="checkout" onclick="creatOrder()">结算 &gt;</a>
+                <a href="#" class="checkout" onclick="creatOrderFromCart()">结算 &gt;</a>
             </div>
             <div class="clear"></div>
         </div><!--end of left content-->
@@ -130,24 +132,28 @@
 
 </body>
 <script type="text/javascript">
-    function creatOrder(id) {
-        var orderItem=[];
-
-        console.log($("input[type='checkbox']").attr("check",true))
-
-
-        /* var str = "";
-              $("input[type=checkbox]").each(function(){
-                     if($(this).is(":checked"))
-                     {
-
-                     }
-                 });*/
-
-
-
-        $.ajax({
-
+    function creatOrderFromCart() {
+        var orderItem=new Array;
+        var cate="";
+        var check=$("input[name='cartItem']:checked");//选中的复选框
+        check.each(function(){
+            var row=$(this).parent("td").parent("tr");
+            var bookId=row.find("[name='bookId']").val();//注意html()和val()
+            var quantity=row.find("[name='quantity']").html();
+            var price=row.find("[name='price']").html();
+            var subtotal=row.find("[name='subtotal']").html();
+            var obj={"id":bookId,"price":price,"subtotal":subtotal,"quantity":quantity};
+            orderItem.push(obj);
+            console.log(orderItem);
+        });
+       $.ajax({
+            url:"creatOrderFromCart",
+            data: {"orderItem":JSON.stringify(orderItem)},
+            success:function (result) {
+               if(result=="success"){
+                   window.location.href="orderProtal";
+               }
+            }
         })
     }
 

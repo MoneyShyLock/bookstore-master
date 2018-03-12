@@ -33,4 +33,13 @@ public class CartVO extends Book{
     public void setSubtotal(BigDecimal subtotal) {
         this.subtotal = subtotal;
     }
+
+    @Override
+    public String toString() {
+        return "CartVO{" +
+                "quantity=" + quantity +
+                ", subtotal=" + subtotal +
+                ", cartItemId=" + cartItemId +
+                '}';
+    }
 }
