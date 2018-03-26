@@ -89,7 +89,7 @@
 
                     <ul class="user-menu pull-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
                         <li>
-                            <a href="/admin_information">
+                            <a href="admin_information">
                                 <i class="icon-user"></i>
                                 个人资料
                             </a>

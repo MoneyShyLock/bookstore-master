@@ -264,8 +264,8 @@
                                                 <th class="center" style="width: 10%">登录名</th>
                                                 <th class="center" style="width: 15%">联系方式</th>
                                                 <th class="center" style="width: 20%">邮箱地址</th>
-                                                <th class="center" style="width: 20%">注册时间</th>
-                                                <th class="center" style="width: 25%">操作</th>
+                                                <th class="center" style="width: 15%">注册时间</th>
+                                                <th class="center" style="width: 30%">操作</th>
                                             </tr>
                                             </thead>
 
@@ -300,7 +300,7 @@
                                                         </button>
                                                         <button class="label label-xlg label-primary arrowed arrowed-right"
                                                                 onclick="modifyPwd(${user.id})">
-                                                            初始化密码
+                                                            重置密码
                                                         </button>
                                                     </th>
                                                 </tr>

@@ -322,7 +322,7 @@
                                                     <th class="center">${order.amounts}</th>
                                                     <th class="center">
                                                         <span class="label label-xlg label-light arrowed-in-right">
-                                                            <a role="button" class="blue" onclick="loadData(${order.id})"
+                                                            <a role="button" class="blue" href="javascript:" onclick="loadData(${order.id})"
                                                                data-toggle="modal"
                                                                data-target="#orderInformation"
                                                                >
@@ -338,7 +338,7 @@
                                                         <c:if test="${order.status==2}">
                                                             <span class="label label-xlg label-light arrowed-in-right">
 
-                                                                <a href="javascript:up(${order.id} )"> 　通知发货 </a>
+                                                                <a href="javascript:give(${order.id} )"> 　通知发货 </a>
                                                             </span>
                                                         </c:if>
                                                         <c:if test="${order.status==3||order.status==4||order.status==5||order.status==6}">
@@ -544,8 +544,7 @@
 
 <script>
     function loadData(id){
-
-
+        console.log(id)
        $.ajax({
             type: "GET",
             url: "orderById?id=" + id,
@@ -558,6 +557,18 @@
             }
         });
 
+    }
+</script>
+<script>
+    function give(id){
+        $.ajax({
+            type: "GET",
+            url: "shipping?id=" + id,
+            dataType: "json",
+            success: function (data) {                    //result为返回值
+                alert("通知成功");
+            }
+        });
     }
 </script>
 

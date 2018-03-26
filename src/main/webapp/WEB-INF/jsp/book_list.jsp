@@ -137,7 +137,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="addBook" target="_blank">
+                            <a href="addBook">
                                 <i class="icon-double-angle-right"></i> 图书信息登记
                             </a>
                         </li>
@@ -263,7 +263,7 @@
                                         书籍列表
                                         <input id="query" type="search" name="query" placeholder="请输入图书名称"
                                                value="${query }">
-                                        <button  class="btn btn-app btn-primary btn-xs">查询</button>
+                                        <button onclick="search()"  class="btn btn-app btn-primary btn-xs">查询</button>
                                     </div>
 
                                     <div class="table-responsive">

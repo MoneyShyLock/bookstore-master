@@ -249,7 +249,7 @@
                 <div class="row">
                     <div class="col-xs-12">
                         <!-- PAGE CONTENT BEGINS -->
-                        <form class="form-horizontal" action="upload/UploadController" method="post"
+                        <form class="form-horizontal" action="upload" method="post"
                               enctype="multipart/form-data">
                             <div class="form-group">
                                 <label class="col-sm-3 control-label no-padding-right"> 书名:</label>

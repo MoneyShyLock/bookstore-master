@@ -97,7 +97,7 @@
 
             <div class="feat_prod_box_details">
 
-                <div class="prod_img"><a href="${bookVO.image}" rel="lightbox"><img src="${bookVO.image}" alt="" title="" border="0" /></a>
+                <div class="prod_img"><a href="${bookVO.image}" rel="lightbox"><img src="${bookVO.image}" alt="" title="" border="0" style="width: 97.99px;height: 150px"/></a>
 
                 </div>
 

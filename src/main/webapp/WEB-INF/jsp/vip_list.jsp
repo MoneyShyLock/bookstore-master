@@ -240,15 +240,16 @@
                                         <table id="sample-table-2" class="table table-striped table-bordered table-hover">
                                             <thead>
                                             <tr>
-                                                <th class="center">
+                                                <th class="center" style="width: 5%">
                                                     ID
                                                 </th>
-                                                <th>登录名</th>
-                                                <th>联系方式</th>
-                                                <th>会员等级</th>
-                                                <th>邮箱地址</th>
-                                                <th>注册时间</th>
-                                                <th>操作</th>
+
+                                                <th class="center" style="width: 5%">登录名</th>
+                                                <th class="center" style="width: 10%">联系方式</th>
+                                                <th class="center" style="width: 15%">会员等级</th>
+                                                <th class="center" style="width: 15%">邮箱地址</th>
+                                                <th class="center" style="width: 20%">注册时间</th>
+                                                <th class="center" style="width: 30%">操作</th>
                                             </tr>
                                             </thead>
 
@@ -272,23 +273,22 @@
                                                         <fmt:formatDate value="${user.registerTime}" pattern="yyyy-MM-d HH:mm:ss EEEE"/></th>
 
                                                     <th class="center">
-                                                        <button class="btn btn-primary btn-sm"
+                                                        <button class="label label-xlg label-primary arrowed arrowed-right"
                                                                 role="button" class="blue"
                                                                 data-toggle="modal"
                                                                 data-target="#userShop"
                                                                 onclick="check(${user.id})">
-                                                            <span class="glyphicon glyphicon-pencil"
-                                                                  aria-hidden="true"></span>
+                                                            <i class="icon-edit"></i>
                                                             查看
                                                         </button>
-                                                        <button class="btn btn-danger btn-sm" onclick="del(${user.id})">
-                                                            <span class="glyphicon glyphicon-trash"
+                                                        <button class="label label-lg label-pink arrowed-right" onclick="del(${user.id})">
+                                                            <span class="icon-trash"
                                                                   aria-hidden="true"></span>
                                                             删除
                                                         </button>
-                                                        <button class="btn btn-primary btn-sm"
+                                                        <button class="label label-xlg label-primary arrowed arrowed-right"
                                                                 onclick="modifyPwd(${user.id})">
-                                                            初始化密码
+                                                            重置密码
                                                         </button>
                                                     </th>
                                                 </tr>

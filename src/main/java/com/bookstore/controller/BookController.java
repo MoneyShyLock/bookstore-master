@@ -64,6 +64,7 @@ public class BookController {
         return "book_list";
     }
 
+
     // 上架
     @RequestMapping("/upBook/{ids}")
     @ResponseBody
@@ -184,8 +185,8 @@ public class BookController {
     }
 
 
-    @RequestMapping("/upload/UploadController")
-    public MessageResult springUpload(Book book, HttpServletRequest request) throws IllegalStateException, IOException {
+    @RequestMapping("/upload")
+    public String springUpload(Book book, HttpServletRequest request) throws IllegalStateException, IOException {
         String imagePath = "";
         //将当前上下文初始化给  CommonsMutipartResolver （多部分解析器）
         CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver(
@@ -214,7 +215,8 @@ public class BookController {
         book.setSalesVolume(0);
         book.setImage(imagePath);
         MessageResult messageResult = bookService.saveBook(book);
-        return messageResult;
+        System.out.println(messageResult);
+        return "redirect:/listBooks";
     }
 
     @ResponseBody
@@ -755,6 +757,9 @@ public class BookController {
 
         BookVO bookVO = bookService.getBookForProtal(id);
         List<Book> bookKinds = bookService.getBookByKinds(bookVO.getKinds());
+        if(bookKinds.size()>3){
+            bookKinds=bookKinds.subList(0,3);
+        }
         modelAndView.setViewName("protal_detail");
         modelAndView.addObject("bookVO", bookVO);
         modelAndView.addObject("bookKinds", bookKinds);

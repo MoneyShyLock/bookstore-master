@@ -49,7 +49,7 @@
 
             <c:forEach items="${offerList}" var="book">
                 <div class="feat_prod_box">
-                    <div class="prod_img"><a href="#" onclick="bookDetail(${book.id})"><img src="${book.image}" alt="" title="" border="0" /></a></div>
+                    <div class="prod_img"><a href="#" onclick="bookDetail(${book.id})"><img src="${book.image}" alt="" title="" border="0" style="width: 97.99px;height: 150px"/></a></div>
                     <div class="prod_det_box">
                         <span class="special_icon"><img src="images/special_icon.gif" alt="" title="" /></span>
                         <div class="box_top"></div>

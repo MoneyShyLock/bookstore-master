@@ -248,7 +248,7 @@
                                     <div class="table-header">
                                         管理员列表
                                         <input id="query" type="search" name="query" placeholder="查询条件"
-                                               value="${query }">
+                                               value="${query}">
 
                                         <button onclick="search()" class="btn btn-app btn-primary btn-xs">查询</button>
                                         <a id="hidden_jurisdiction" style="display: none">${jurisdiction}</a>
@@ -443,15 +443,8 @@
     function search() {
         var $query = $('input[name=query]').val();
         var $encodeQuery = encodeURI(encodeURI($query));
-        var obj = document.getElementById("jurisdiction");
-        for (i = 0; i < obj.length; i++) {//下拉框的长度就是它的选项数.
 
-            if (obj[i].selected == true) {
-                var text = obj[i].value;//获取当前选择项的值.
-            }
-        }
-
-        window.location.href = 'listAdmins?pn=${page_Num }&query=' + $encodeQuery + '&jurisdiction=' + text;
+        window.location.href = 'listAdmins?pn=${page_Num }&query=' + $encodeQuery;
     }
 </script>
 

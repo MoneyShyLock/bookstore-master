@@ -66,6 +66,16 @@ public class OrderController {
         OrdersVO ordersVO = orderService.getOrderById(id);
         return ordersVO;
     }
+    //通知发货
+    @ResponseBody
+    @RequestMapping("/shipping")
+    public String shipping(Long id){
+        Orders orders = new Orders();
+        orders.setStatus(3);
+        orders.setId(id);
+        orderService.updateStatu(orders);
+        return "success";
+    }
 
 
 }
